@@ -22,6 +22,8 @@ uint16_t lenBuff2=0, lenBuff3=0;
 int main(void)
 {
   HAL_Init();
+	
+	
 
   SystemClock_Config();
 
