@@ -35,9 +35,9 @@
     <!-- Angular Material style sheet -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-    
-    <link rel="stylesheet" href="../Libs/layouts.css" />
-    <script src="../Libs/MainController.js"></script>
+    <link rel="stylesheet" href="public/site/layout.css" />
+    <link rel="stylesheet" href="" />
+    <!-- <script src="MainController.js"></script> -->
 
 </head>
 
@@ -63,10 +63,10 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#!info">
+                                    <a href="#!EMPLOYEE">
                                             <span class="scope">
                                                 <i class="glyphicon glyphicon-user"></i>
-                                                <span class="title-function hidden-xs">INFO</span>
+                                                <span class="title-function hidden-xs">EMPLOYEE</span>
                                             </span>
                                         </a>
                                 </li>
