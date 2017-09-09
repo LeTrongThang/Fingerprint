@@ -24,7 +24,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-
+    
     <!-- angular routing -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
     <!-- Angular Material Library -->
@@ -35,9 +35,8 @@
     <!-- Angular Material style sheet -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-    
-    <link rel="stylesheet" href="layout.css" />
-    <!-- <script src="MainController.js"></script> -->
+    <link rel="stylesheet" href="public/site/layout.css" />
+    <script src="public/site/MainController.js"></script>
 
 </head>
 
@@ -63,7 +62,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#!EMPLOYEE">
+                                    <a href="#!employee">
                                             <span class="scope">
                                                 <i class="glyphicon glyphicon-user"></i>
                                                 <span class="title-function hidden-xs">EMPLOYEE</span>
@@ -75,6 +74,14 @@
                                             <span class="scope">
                                                 <i class="glyphicon glyphicon-list-alt"></i>
                                                 <span class="title-function hidden-xs">HISTORY</span>
+                                            </span>
+                                        </a>
+                                </li>
+                                <li>
+                                    <a href="#!calendar">
+                                            <span class="scope">
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                                <span class="title-function hidden-xs">CALENDAR</span>
                                             </span>
                                         </a>
                                 </li>
