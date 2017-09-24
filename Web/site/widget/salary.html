@@ -4,9 +4,9 @@
 <head>
     <!-- angular routing -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="public/site/SalaryController.js"></script>
+    <!-- <script src="public/site/SalaryController.js"></script> -->
 
 </head>
 
@@ -14,10 +14,10 @@
     <div ng-app="appSalary" ng-controller="SalaryController">
         <table>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Room</th>
-                <th>Salary</th>
+                <th>ID </th>
+                <th>Name </th>
+                <th>Room </th>
+                <th>Salary </th>
             </tr>
             <tr ng-repeat="employee in employees">
                 <td>{{ $index + 1 }}</td>

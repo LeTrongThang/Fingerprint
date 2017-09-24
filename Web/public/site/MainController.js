@@ -7,8 +7,8 @@ app.config(function($routeProvider) {
         template : "<h1>Fingerprint<h1>"
     })
     .when("/salary", {
-        templateUrl : "public/site/test1.html"
-        // controller : "SalaryController"
+        templateUrl : "site/widget/salary.html",
+        controller : "SalaryController"
     })
     .when("/employee", {
         template : "<h1>Employee<h1>"
@@ -23,9 +23,9 @@ app.config(function($routeProvider) {
         redirectTo: "/"
     });
 });
-// app.controller('SalaryController', function($scope) {
-//     $scope.employees = [
-//       {Name: 'huy', Room : 'A1' , Salary : 11},
-//       {Name: 'le', Room : 'A1' , Salary : 11}
-//     ];
-// });
+app.controller('SalaryController', function($scope) {
+    $scope.employees = [
+      {Name: 'huy', Room : 'A1' , Salary : 11},
+      {Name: 'le', Room : 'A1' , Salary : 11}
+    ];
+});
