@@ -1,43 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title> Fingerprint </title>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="initial-scale=1" />
+
     <!-- bootstraps library -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Libs/bootstrap/css/bootstrap-theme.min.css">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
-
-    <!-- Angular Material requires Angular.js Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script src="Libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="Libs/Jquery/jquery-3.2.1.min.js"></script>
     
-    <!-- angular routing -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
-    <!-- Angular Material Library -->
+    <!-- <script src = "Libs/angulajs/angular.js"> </script> -->
+    <script src = "Libs\angularjs\angular.min.js"> </script>
+    <script src = "Libs\angularjs\angular-route.js"> </script>
+    
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
-
-    <!-- Angular Material style sheet -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-    <link rel="stylesheet" href="public/site/layout.css" />
     <script src="public/site/MainController.js"></script>
-
+    <script src="public/site/SalaryController.js"></script>
+    <script src = "public/site/EmployeeController.js"></script>
+    <link rel="stylesheet" href="public/site/layout.css" />
+    
 </head>
 
 <body ng-app="Fingerprint">

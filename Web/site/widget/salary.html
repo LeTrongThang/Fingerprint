@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <!-- angular routing -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <!-- <script src="public/site/SalaryController.js"></script> -->
-
+   
 </head>
 
 <body>
-    <div ng-app="appSalary" ng-controller="SalaryController">
-        <table>
+    <div class="table" ng-app="Fingerprint" ng-controller="SalaryController">
+        <div>
+         <select ng-model="selectedMonth" ng-options="month for month in months"></select>   
+         <select ng-model="selectedYear" ng-options="year for year in years"></select>
+        </div> 
+        <div><input type="text" ng-model="test" placeholder="Search name"></div>
+        <table class="table">
             <tr>
-                <th>ID </th>
-                <th>Name </th>
-                <th>Room </th>
-                <th>Salary </th>
+                <th>  ID   </th>  
+                <th>  Name  </th>
+                <th>  Room </th>  
+                <th>  Salary </th>
             </tr>
-            <tr ng-repeat="employee in employees">
+            <tr ng-repeat="employee in employees | filter : test">
                 <td>{{ $index + 1 }}</td>
                 <td>{{ employee.Name }}</td>
                 <td>{{ employee.Room }}</td>
