@@ -19,10 +19,10 @@
     <script src = "Libs\angularjs\angular-route.js"> </script>
     
 
-    <script src="public/site/MainController.js"></script>
-    <script src="public/site/SalaryController.js"></script>
-    <script src = "public/site/EmployeeController.js"></script>
-    <link rel="stylesheet" href="public/site/layout.css" />
+    <script src = "site/controller/MainController.js"></script>
+    <!-- <script src = "public/site/SalaryController.js"></script>
+    <script src = "public/site/EmployeeController.js"></script> -->
+    <link rel="stylesheet" href="public/css/layout.css" />
     
 </head>
 

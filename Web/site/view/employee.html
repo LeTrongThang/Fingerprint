@@ -2,7 +2,10 @@
 <html lang="en">
 
 <head>
-    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1" />
     <style>
         /* The Modal (background) */
 
@@ -28,6 +31,7 @@
             background-color: rgba(0, 0, 0, 0.4);
             /* Black w/ opacity */
         }
+
         /* Modal Content */
 
         .modal-content {
@@ -37,6 +41,7 @@
             border: 1px solid #888;
             width: 80%;
         }
+
         /* The Close Button */
 
         .close {
@@ -53,18 +58,17 @@
             cursor: pointer;
         }
     </style>
-    
-    <script src = "public/site/EmployeeController.js"></script>
-
 </head>
 
 <body>
-    <div class="table" ng-app="Fingerprint" ng-controller="EmployeeController">
-
-        <div><input type="text" ng-model="test" placeholder="Search name"></div>
+    <div class="table" ng-controller="EmployeeController">
+        <div>
+            <input type="text" ng-model="test" placeholder="Search name">
+        </div>
         <table class="table">
             <tr>
-                <th> ID </th>
+                <th>#</th>
+                <th> EmployeeID </th>
                 <th> Name </th>
                 <th> Position </th>
                 <th> Email </th>
@@ -76,6 +80,7 @@
             </tr>
             <tr ng-repeat="employee in employees | filter : test">
                 <td>{{ $index + 1 }}</td>
+                <td>{{ employee.EmployeeID }}</td>
                 <td>{{ employee.Name }}</td>
                 <td>{{ employee.Position }}</td>
                 <td>{{ employee.Email }}</td>
@@ -89,46 +94,46 @@
     </div>
 
     <!-- Trigger/Open The Modal -->
+    <button id="btnCreate" >Create New Employee</button>
 
-    <button id="myBtn"> Create new employee </button>
-     
     <!-- The Modal -->
     <div id="myModal" class="modal">
-
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p>Some text in the Modal..</p>
+            <form novalidate>
+                <div>
+                    <label>Name : </label>
+                    <input type="text" ng-model="name" required>
+                    <br>
+                </div>
+                <div>
+                    <label>Position : </label>
+                    <select ng-model="selectedPosition" ng-options="position for position in Position" required></select>
+                    <br>
+                </div>
+                <div>
+                    <label>Email : </label>
+                    <input type="email" name="inputEmail" ng-model="InputEmail" required>
+                </div>
+                <div>
+                    <label>Phone : </label>
+                    <input type="text" ng-model="phone" required>
+                    <br>
+                </div>
+                <div>
+                    <label>Address : </label>
+                    <input type="text" ng-model="Address" required>
+                    <br>
+                </div>
+                <div>
+                    <label>Salary : </label>
+                    <input type="text" ng-model="salary" required>
+                    <br>
+                </div>
+
+            </form>
         </div>
-
     </div>
-    <script>
-            // Get the modal
-            var modal = document.getElementById('myModal');
-            
-            // Get the button that opens the modal
-            var btn = document.getElementById("myBtn");
-            
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-            
-            // When the user clicks the button, open the modal 
-            btn.onclick = function() {
-                modal.style.display = "block";
-            }
-            
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-                modal.style.display = "none";
-            }
-            
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-            </script>
 </body>
-
-</html> 
+</html>

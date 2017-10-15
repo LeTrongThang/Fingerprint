@@ -1,2 +1,0 @@
-ch?c các t?p tin tác d?ng d?n h? th?ng website nhu thêm s?a xóa, thao tác v?i co s? d? li?u (ph?n back end).
-includes the whole files 
