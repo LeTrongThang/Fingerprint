@@ -79,7 +79,9 @@ app.controller('EmployeeController', function ($scope) {
     $scope.employees = [
         {EmployeeID: 'NV01', Name: 'huy', Position: 'Member', Email: 'huyle@gmail.com', PhoneNumber: '0957435290', Address: '9 nguyen thi minh khai, quan 1', Salary: 113, Bonus: 220, StartingDate: '2/10/2017' }
     ];
-
+    $scope.user
+    this.myDate = new Date();
+    this.isOpen = false;
     var modal = document.getElementById('myModal');
     var btn = document.getElementById("btnCreate");
     // Get the <span> element that closes the modal

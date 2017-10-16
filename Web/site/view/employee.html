@@ -99,17 +99,29 @@
     <!-- The Modal -->
     <div id="myModal" class="modal">
         <!-- Modal content -->
-        <div class="modal-content">
+        <div class="modal-content" ng-model = "newEmployee">
             <span class="close">&times;</span>
             <form novalidate>
                 <div>
                     <label>Name : </label>
-                    <input type="text" ng-model="name" required>
+                    <md-input-container class="md-block" flex-gt-sm="">
+                        <label>First name</label>
+                        <input ng-model="newEmployee.Name">
+                      </md-input-container>
                     <br>
                 </div>
                 <div>
                     <label>Position : </label>
                     <select ng-model="selectedPosition" ng-options="position for position in Position" required></select>
+                    <md-input-container>
+                        <label>Position</label>
+                        <md-select ng-model="ctrl.userState">
+                          <md-option><em>None</em></md-option>
+                          <md-option ng-repeat="state in ctrl.states" ng-value="state.abbrev" ng-disabled="$index === 1">
+                            {{state.abbrev}}
+                          </md-option>
+                        </md-select>
+                      </md-input-container>
                     <br>
                 </div>
                 <div>
@@ -131,6 +143,10 @@
                     <input type="text" ng-model="salary" required>
                     <br>
                 </div>
+                <div flex-gt-xs="">
+                    <h4>Standard date-picker</h4>
+                    <md-datepicker ng-model="ctrl.myDate" md-placeholder="Enter date"></md-datepicker>
+                  </div>
 
             </form>
         </div>
