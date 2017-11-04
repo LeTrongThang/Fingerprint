@@ -104,8 +104,6 @@ require (PATH_SYSTEM . '/config/config.php');
     </header>
     <div ng-view></div>
      <!-- Angular Material Library -->
-    
-    
     <script src="Libs/Jquery/jquery-3.2.1.min.js"></script>
     <script src="Libs/bootstrap/js/bootstrap.min.js"></script>
 </body>
