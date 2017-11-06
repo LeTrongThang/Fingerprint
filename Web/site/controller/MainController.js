@@ -18,7 +18,7 @@ app.config(function ($routeProvider) {
             template: "<h1>CALENDAR<h1>"
         })
         .when("/history", {
-            templateUrl: "site/view/history.html",
+            templateUrl: "site/view/history.php",
             controller: "HistoryController"
         })
         .otherwise({
@@ -102,11 +102,15 @@ app.controller('EmployeeController', function ($scope) {
     }
 });
 app.controller('HistoryController',['$scope', '$http', function ($scope, $http) {
-  $http({
-      method : 'GET',
-      url : '/history'
-  }).then(function successCallback(response){
-      $scope.historys = response.data;
-  });
+  console.log("Started history controller");
+  $scope.getHistory = function() {
+      $http.get("history.php")
+      .then(function(data){
+          $scope.historys = data;
+      });
+    $scope.FromDate = new Date();
+    $scope.ToDate = new Date();
+  }
+  $scope.getHistory();  
 }]);
 

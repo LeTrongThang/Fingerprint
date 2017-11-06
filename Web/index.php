@@ -1,11 +1,11 @@
  <?php
+ // Lấy thông số cấu hình
+//require (PATH_SYSTEM . '/config/config.php');
 // Đường dẫn tới hệ  thống
 define('PATH_SYSTEM', __DIR__ .'/system');
 define('PATH_APPLICATION', __DIR__ . '/site');
 require "./admin/database/database.php";
-// Lấy thông số cấu hình
-require (PATH_SYSTEM . '/config/config.php');
- 
+require "./site/controller/HistoryService.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,8 +31,6 @@ require (PATH_SYSTEM . '/config/config.php');
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
     <script src = "site/controller/MainController.js"></script>
-    <!-- <script src = "public/site/SalaryController.js"></script>
-    <script src = "public/site/EmployeeController.js"></script> -->
     <link rel="stylesheet" href="public/css/layout.css" />
     
 </head>

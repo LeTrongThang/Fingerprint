@@ -60,41 +60,81 @@
     </style>
 </head>
 
-<body>
-    <div class="table" ng-controller="EmployeeController">
-        <div>
-            <input type="text" ng-model="test" placeholder="Search name">
+<body ng-controller="EmployeeController">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+        <div class="panel-heading">Search by condition</div>
+        <div class="panel-body">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label col-sm-3">Name</label>
+                <div class="col-sm-9">
+                  <input class="form-control" type="text" ng-model="SearchModel.Name" placeholder="Search name">
+                  </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Employee ID</label>
+                <div class="col-sm-9">
+                  <input class="form-control" type="text" ng-model="SearchModel.EmployeeID" placeholder="Employee ID">
+                </div>
+            </div>    
         </div>
-        <table class="table">
-            <tr>
-                <th>#</th>
-                <th> EmployeeID </th>
-                <th> Name </th>
-                <th> Position </th>
-                <th> Email </th>
-                <th> Phone Number </th>
-                <th> Address </th>
-                <th> Salary </th>
-                <th> Bonus </th>
-                <th> Starting Date </th>
-            </tr>
-            <tr ng-repeat="employee in employees | filter : test">
-                <td>{{ $index + 1 }}</td>
-                <td>{{ employee.EmployeeID }}</td>
-                <td>{{ employee.Name }}</td>
-                <td>{{ employee.Position }}</td>
-                <td>{{ employee.Email }}</td>
-                <td>{{ employee.PhoneNumber }}</td>
-                <td>{{ employee.Address }}</td>
-                <td>{{ employee.Salary }}</td>
-                <td>{{ employee.Bonus }}</td>
-                <td>{{ employee.StartingDate }}</td>
-            </tr>
-        </table>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label col-sm-3">Email</label>
+                <div class="col-sm-9">
+                  <input class="form-control" type="text" ng-model="SearchModel.Email" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">PhoneNumber</label>
+                <div class="col-sm-9">
+                  <input class="form-control" type="text" ng-model="SearchModel.PhoneNumber" placeholder="PhoneNumber">
+                </div>
+            </div>
+            <button style="text-align:right" type="button" class="btn btn-primary" ng-click="SearchModel.Search()">Search</button>
+        </div>
+        </div>
+        </div>
     </div>
-
+    <div class="col-sm-12">
+            <button id="btnCreate" class="btn btn-primary" style="float:left" ng-click="CreateNewEmployee">Create New Employee</button>
+    </div>
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Result condition</div>
+            <div class="panel-body">  
+            <table class="table">
+                <tr>
+                    <th>#</th>
+                    <th> EmployeeID </th>
+                    <th> Name </th>
+                    <th> Position </th>
+                    <th> Email </th>
+                    <th> Phone Number </th>
+                    <th> Address </th>
+                    <th> Salary </th>
+                    <th> Bonus </th>
+                    <th> Starting Date </th>
+                </tr>
+                <tr ng-repeat="employee in employees | filter : test">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ employee.EmployeeID }}</td>
+                    <td>{{ employee.Name }}</td>
+                    <td>{{ employee.Position }}</td>
+                    <td>{{ employee.Email }}</td>
+                    <td>{{ employee.PhoneNumber }}</td>
+                    <td>{{ employee.Address }}</td>
+                    <td>{{ employee.Salary }}</td>
+                    <td>{{ employee.Bonus }}</td>
+                    <td>{{ employee.StartingDate }}</td>
+                </tr>
+            </table>
+            </div>
+        </div>
+    </div>
     <!-- Trigger/Open The Modal -->
-    <button id="btnCreate" >Create New Employee</button>
+    
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
@@ -104,48 +144,36 @@
             <form novalidate>
                 <div>
                     <label>Name : </label>
-                    <md-input-container class="md-block" flex-gt-sm="">
-                        <label>First name</label>
-                        <input ng-model="newEmployee.Name">
-                      </md-input-container>
+                    <input class="form-control" type="text" ng-model="newEmployeeModel.Name" placeholder="Name">
                     <br>
                 </div>
                 <div>
-                    <label>Position : </label>
-                    <select ng-model="selectedPosition" ng-options="position for position in Position" required></select>
-                    <md-input-container>
-                        <label>Position</label>
-                        <md-select ng-model="ctrl.userState">
-                          <md-option><em>None</em></md-option>
-                          <md-option ng-repeat="state in ctrl.states" ng-value="state.abbrev" ng-disabled="$index === 1">
-                            {{state.abbrev}}
-                          </md-option>
-                        </md-select>
-                      </md-input-container>
+                    <label>Position</label>
+                        <select  class="col-sm-3 form-control" ng-model="newEmployeeModel.Position" ng-options="position for position in Position"></select>
                     <br>
                 </div>
                 <div>
                     <label>Email : </label>
-                    <input type="email" name="inputEmail" ng-model="InputEmail" required>
+                    <input class="form-control" type="text" ng-model="newEmployeeModel.Email" placeholder="Email" required>
                 </div>
                 <div>
                     <label>Phone : </label>
-                    <input type="text" ng-model="phone" required>
+                    <input class="form-control" type="text" ng-model="newEmployeeModel.PhoneNumber" placeholder="PhoneNumber" required>
                     <br>
                 </div>
                 <div>
                     <label>Address : </label>
-                    <input type="text" ng-model="Address" required>
+                    <input class="form-control" type="text" ng-model="newEmployeeModel.Address" placeholder="Address" required>
                     <br>
                 </div>
                 <div>
                     <label>Salary : </label>
-                    <input type="text" ng-model="salary" required>
+                    <input class="form-control" type="text" ng-model="newEmployeeModel.Salary" placeholder="Salary" required>
                     <br>
                 </div>
                 <div flex-gt-xs="">
-                    <h4>Standard date-picker</h4>
-                    <md-datepicker ng-model="ctrl.myDate" md-placeholder="Enter date"></md-datepicker>
+                    <h4>Starting Date</h4>
+                    <md-datepicker ng-model="newEmployeeModel.myDate" md-placeholder="Enter date"></md-datepicker>
                   </div>
 
             </form>
