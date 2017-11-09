@@ -18,7 +18,7 @@ app.config(function ($routeProvider) {
             template: "<h1>CALENDAR<h1>"
         })
         .when("/history", {
-            templateUrl: "site/view/history.php",
+            templateUrl: "site/view/history.html",
             controller: "HistoryController"
         })
         .otherwise({
@@ -103,8 +103,22 @@ app.controller('EmployeeController', function ($scope) {
 });
 app.controller('HistoryController',['$scope', '$http', function ($scope, $http) {
   console.log("Started history controller");
+
+//   var config = {
+//     headers:{
+//         'Accept': 'application/json',
+//         'requestType':'angularJS',
+//         'Cache-Control': 'no-cach, no-store, must-revalidate',
+//         'Pragame':'no-catch',
+//         'Expries': 0,
+//         action: 'HistoryService.php',
+//     },
+//     params:{}
+//    };
+   var url = 'HistoryService.php';
+
   $scope.getHistory = function() {
-      $http.get("history.php")
+      $http.get(url)
       .then(function(data){
           $scope.historys = data;
       });
