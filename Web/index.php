@@ -5,7 +5,7 @@
 define('PATH_SYSTEM', __DIR__ .'/system');
 define('PATH_APPLICATION', __DIR__ . '/site');
 require "./admin/database/database.php";
-require "./HistoryService.php";
+//require "./HistoryService.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

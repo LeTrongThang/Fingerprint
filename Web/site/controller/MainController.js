@@ -103,28 +103,31 @@ app.controller('EmployeeController', function ($scope) {
 });
 app.controller('HistoryController',['$scope', '$http', function ($scope, $http) {
   console.log("Started history controller");
-
-//   var config = {
-//     headers:{
-//         'Accept': 'application/json',
-//         'requestType':'angularJS',
-//         'Cache-Control': 'no-cach, no-store, must-revalidate',
-//         'Pragame':'no-catch',
-//         'Expries': 0,
-//         action: 'HistoryService.php',
-//     },
-//     params:{}
-//    };
+  
+  var config = {
+    headers:{
+        'Accept': 'application/json',
+        'requestType':'angularJS',
+        'Cache-Control': 'no-cach, no-store, must-revalidate',
+        'Pragame':'no-catch',
+        'Expries': 0,
+        action: 's',
+    },
+    params:{}
+   };
    var url = 'HistoryService.php';
-
+   $scope.init = function(){
+    $scope.historys = [];
+    $scope.FromDate = new Date(); 
+    $scope.ToDate = new Date();
+};
   $scope.getHistory = function() {
-      $http.get(url)
+      $http.get(url, config)
       .then(function(data){
           $scope.historys = data;
       });
-    $scope.FromDate = new Date();
-    $scope.ToDate = new Date();
-  }
+  };
+  $scope.init();
   $scope.getHistory();  
 }]);
 

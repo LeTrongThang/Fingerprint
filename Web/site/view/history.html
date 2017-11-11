@@ -1,4 +1,4 @@
-
+<body ng-controller="HistoryController">
 <div>
         <div class="col-sm-12">
            <div class="panel panel-default">
@@ -36,17 +36,18 @@
                     <th>#</th>
                     <th> EmployeeID </th>
                     <th> Name </th>
-                    <th> Status </th>
+                    
                     <th> Date </th>
                 </tr>
-                <tr ng-repeat="history in historys">
+                <tr ng-repeat="history in historys.data">
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ history.EmployeeID }}</td>
-                    <td>{{ history.Name }}</td>
-                    <td>{{ history.Date }}</td>
+                    <td ng-bind="history.employeeID"></td>
+                    <td ng-bind="history.name"></td>
+                    <td ng-bind="history.date"></td>
                 </tr>
             </table>
             </div>
             </div>
         </div>
 </div>
+</body>
