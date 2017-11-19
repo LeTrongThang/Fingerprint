@@ -31,6 +31,7 @@ require "./admin/database/database.php";
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
     <script src = "site/controller/MainController.js"></script>
+    <script src = "Libs/UiBoostrap/ui-bootstrap-tpls-2.5.0.min.js"></script>
     <link rel="stylesheet" href="public/css/layout.css" />
     
 </head>

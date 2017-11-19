@@ -1,6 +1,6 @@
 
 
-var app = angular.module("Fingerprint", ["ngRoute","ngMaterial","ngMessages"]);
+var app = angular.module("Fingerprint", ["ngRoute","ngMaterial","ngMessages","ui.bootstrap"]);
 app.config(function ($routeProvider) {
     $routeProvider
         .when("/", {
@@ -82,28 +82,29 @@ app.controller('EmployeeController', function ($scope) {
     $scope.user
     this.myDate = new Date();
     this.isOpen = false;
-    var modal = document.getElementById('myModal');
-    var btn = document.getElementById("btnCreate");
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-    // When the user clicks the button, open the modal 
-    btn.onclick = function () {
-        modal.style.display = "block";
-    }
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+
+    $scope.ShowDetail = function($employee){
+        var modalInstance = $uibModal.open({
+        animation: $ctrl.animationsEnabled,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: 'DetailEmployee.html',
+        controller: $employee > 0? 'UpdateEmployeeController': 'CreateEmployeeController',
+        size: sm,
+        appendTo: parentElem,
+        resolve: {
+          items: function () {
+            return $ctrl.items;
+          }
         }
-    }
+      });
+
+    };
 });
+app.controller('CreateEmployeeController', ['$scope', function($scope){}]);
+app.controller('UpdateEmployeeController', ['$scope', function($scope){}]);
 app.controller('HistoryController',['$scope', '$http', function ($scope, $http) {
   console.log("Started history controller");
-  
   var config = {
     headers:{
         'Accept': 'application/json',
@@ -112,15 +113,14 @@ app.controller('HistoryController',['$scope', '$http', function ($scope, $http) 
         'Pragame':'no-catch',
         'Expries': 0,
         action: 's',
-    },
-    params:{}
-   };
+       },
+    };
    var url = 'HistoryService.php';
    $scope.init = function(){
     $scope.historys = [];
     $scope.FromDate = new Date(); 
     $scope.ToDate = new Date();
-};
+   };
   $scope.getHistory = function() {
       $http.get(url, config)
       .then(function(data){

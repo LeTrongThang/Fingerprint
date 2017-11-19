@@ -1,0 +1,43 @@
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content" ng-model = "newEmployee">
+        <span class="close">&times;</span>
+        <form novalidate>
+            <div class="form-group">
+                <label>Name : </label>
+                <input class="form-control" type="text" ng-model="newEmployeeModel.Name" placeholder="Name">
+                <br>
+            </div>
+            <div class="form-group">
+                <label>Position</label>
+                    <select  class="col-sm-3 form-control" ng-model="newEmployeeModel.Position" ng-options="position for position in Position"></select>
+                <br>
+            </div>
+            <div class="form-group">
+                <label>Email : </label>
+                <input class="form-control" type="text" ng-model="newEmployeeModel.Email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <label>Phone : </label>
+                <input class="form-control" type="text" ng-model="newEmployeeModel.PhoneNumber" placeholder="PhoneNumber" required>
+                <br>
+            </div>
+            <div class="form-group">
+                <label>Address : </label>
+                <input class="form-control" type="text" ng-model="newEmployeeModel.Address" placeholder="Address" required>
+                <br>
+            </div>
+            <div class="form-group">
+                <label>Salary : </label>
+                <input class="form-control" type="text" ng-model="newEmployeeModel.Salary" placeholder="Salary" required>
+                <br>
+            </div>
+            <div flex-gt-xs="">
+                <h4>Starting Date</h4>
+                <md-datepicker ng-model="newEmployeeModel.myDate" md-placeholder="Enter date"></md-datepicker>
+              </div>
+
+        </form>
+    </div>
+</div>
