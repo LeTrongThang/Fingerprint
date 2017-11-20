@@ -86,16 +86,13 @@ app.controller('EmployeeController', function ($scope) {
     $scope.ShowDetail = function($employee){
          $scope.modalInstance = $modal.open({
                 templateUrl: '/Html/Config/Message/Detail' + ver,
-                controller: $MessageID > 0 ? 'MessageEditController' : 'MessageCreateController',
+                controller: $MessageID > 0 ? 'UpdateEmployeeController' : 'CreateEmployeeController',
                 windowClass: "hmodal-info",
                 animation: false,
                 size: 'lg',
                 backdrop: 'static',
                 keyboard: false,
                 resolve: {
-                    parent: function () {
-                        return $scope;
-                    },
                     MessageID: function () {
                         return $MessageID;
                     },
@@ -107,7 +104,15 @@ app.controller('EmployeeController', function ($scope) {
 
     };
 });
-app.controller('CreateEmployeeController', ['$scope', function($scope){}]);
+app.controller('CreateEmployeeController', ['$scope', '$modalInstance', function($scope, modalInstance){
+$scope.close = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    $scope.Change = function () {
+            if ($scope.form.$invalid)
+                return true;
+        }
+}]);
 app.controller('UpdateEmployeeController', ['$scope', function($scope){}]);
 app.controller('HistoryController',['$scope', '$http', function ($scope, $http) {
   console.log("Started history controller");
