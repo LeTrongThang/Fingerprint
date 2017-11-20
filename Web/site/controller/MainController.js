@@ -79,35 +79,31 @@ app.controller('EmployeeController', ['$modal',function ($scope, $modal) {
     $scope.employees = [
         {EmployeeID: 'NV01', Name: 'huy', Position: 'Member', Email: 'huyle@gmail.com', PhoneNumber: '0957435290', Address: '9 nguyen thi minh khai, quan 1', Salary: 113, Bonus: 220, StartingDate: '2/10/2017' }
     ];
-    $scope.user
     this.myDate = new Date();
     this.isOpen = false;
 
     $scope.ShowDetail = function($employee){
          $scope.modalInstance = $modal.open({
-                templateUrl: '/Html/Config/Message/Detail' + ver,
-                controller: $MessageID > 0 ? 'UpdateEmployeeController' : 'CreateEmployeeController',
+                templateUrl: '/site/view/DetailEmployee.html' ,
+                controller: $employee > 0 ? 'UpdateEmployeeController' : 'CreateEmployeeController',
                 windowClass: "hmodal-info",
                 animation: false,
                 size: 'lg',
                 backdrop: 'static',
                 keyboard: false,
                 resolve: {
-                    MessageID: function () {
-                        return $MessageID;
-                    },
-                    Message: function () {
-                        return $Message;
+                    employee: function () {
+                        return $employee;
                     }
                 }
             });
-
     };
-});
+}]);
 app.controller('CreateEmployeeController', ['$scope', '$modalInstance', function($scope, modalInstance){
-$scope.close = function () {
-            $modalInstance.dismiss('cancel');
-        };
+
+    $scope.close = function () {
+        $modalInstance.dismiss('cancel');
+    };
     $scope.Change = function () {
             if ($scope.form.$invalid)
                 return true;
