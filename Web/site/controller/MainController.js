@@ -73,7 +73,7 @@ app.controller('SalaryController', function ($scope) {
     $scope.years = createYearArray();
 
 });
-app.controller('EmployeeController', function ($scope) {
+app.controller('EmployeeController', ['$modal',function ($scope, $modal) {
 
     $scope.Position = ["Team Leader", "Member", "Manager"];
     $scope.employees = [
