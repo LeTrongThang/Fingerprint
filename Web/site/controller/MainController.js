@@ -4,7 +4,8 @@ var app = angular.module("Fingerprint", ["ngRoute","ngMaterial","ngMessages","ui
 app.config(function ($routeProvider) {
     $routeProvider
         .when("/", {
-            template: "<h1>Fingerprint<h1>"
+            templateUrl: "site/view/fingerprint.html",
+            controller: "FingerprintController"
         })
         .when("/salary", {
             templateUrl: "site/view/salary.html",
@@ -44,7 +45,15 @@ function createYearArray() {
     }
     return yearArray;
 }
+// Fingerprint Controller
+app.controller("FingerprintController", ['$scope', function($scope){
+    $scope.init = function(){
+        $('.carousel').carousel();
+    };
+    $scope.init();
+}]);
 
+// Salary Controller
 app.controller('SalaryController', function ($scope) {
 
     $scope.employees = [
@@ -73,7 +82,10 @@ app.controller('SalaryController', function ($scope) {
     $scope.years = createYearArray();
 
 });
-app.controller('EmployeeController', ['$modal',function ($scope, $modal) {
+
+// Employee Controller
+app.controller('EmployeeController', ['$scope','$uibModal',
+    function ($scope, $uibModal) {
 
     $scope.Position = ["Team Leader", "Member", "Manager"];
     $scope.employees = [
@@ -81,35 +93,37 @@ app.controller('EmployeeController', ['$modal',function ($scope, $modal) {
     ];
     this.myDate = new Date();
     this.isOpen = false;
-
     $scope.ShowDetail = function($employee){
-         $scope.modalInstance = $modal.open({
-                templateUrl: '/site/view/DetailEmployee.html' ,
-                controller: $employee > 0 ? 'UpdateEmployeeController' : 'CreateEmployeeController',
-                windowClass: "hmodal-info",
-                animation: false,
-                size: 'lg',
-                backdrop: 'static',
-                keyboard: false,
-                resolve: {
-                    employee: function () {
-                        return $employee;
-                    }
+         var modalInstance = $uibModal.open({
+            templateUrl: '/view/DetailEmployee.html',
+            controller: $employee > 0 ? 'UpdateEmployeeController' : 'CreateEmployeeController',
+            windowClass: "hmodal-info",
+            animation: false,
+            size: 'lg',
+            backdrop: 'static',
+            keyboard: false,
+            resolve: {
+                employee: function () {
+                    return $employee;
                 }
-            });
+            }
+        });
     };
 }]);
-app.controller('CreateEmployeeController', ['$scope', '$modalInstance', function($scope, modalInstance){
-
+app.controller('CreateEmployeeController', ['$scope', '$uibModalInstance', function($scope, $uibModalInstance){
+    console.log("Started CreateEmployee controller");
     $scope.close = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
     $scope.Change = function () {
             if ($scope.form.$invalid)
                 return true;
         }
 }]);
-app.controller('UpdateEmployeeController', ['$scope', function($scope){}]);
+app.controller('UpdateEmployeeController', ['$scope', function($scope){
+    console.log("Started CreateEmployee controller");
+    
+}]);
 app.controller('HistoryController',['$scope', '$http', function ($scope, $http) {
   console.log("Started history controller");
   var config = {
