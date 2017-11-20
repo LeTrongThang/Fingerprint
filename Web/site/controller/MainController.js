@@ -84,20 +84,26 @@ app.controller('EmployeeController', function ($scope) {
     this.isOpen = false;
 
     $scope.ShowDetail = function($employee){
-        var modalInstance = $uibModal.open({
-        animation: $ctrl.animationsEnabled,
-        ariaLabelledBy: 'modal-title',
-        ariaDescribedBy: 'modal-body',
-        templateUrl: 'DetailEmployee.html',
-        controller: $employee > 0? 'UpdateEmployeeController': 'CreateEmployeeController',
-        size: sm,
-        appendTo: parentElem,
-        resolve: {
-          items: function () {
-            return $ctrl.items;
-          }
-        }
-      });
+         $scope.modalInstance = $modal.open({
+                templateUrl: '/Html/Config/Message/Detail' + ver,
+                controller: $MessageID > 0 ? 'MessageEditController' : 'MessageCreateController',
+                windowClass: "hmodal-info",
+                animation: false,
+                size: 'lg',
+                backdrop: 'static',
+                keyboard: false,
+                resolve: {
+                    parent: function () {
+                        return $scope;
+                    },
+                    MessageID: function () {
+                        return $MessageID;
+                    },
+                    Message: function () {
+                        return $Message;
+                    }
+                }
+            });
 
     };
 });
