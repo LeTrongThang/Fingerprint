@@ -86,13 +86,15 @@ app.controller('SalaryController', function ($scope) {
 // Employee Controller
 app.controller('EmployeeController', ['$scope','$uibModal',
     function ($scope, $uibModal) {
+    $scope.init = function(){
+        this.StartingDate = new Date();
+        this.isOpen = false;
+    };
 
     $scope.Position = ["Team Leader", "Member", "Manager"];
     $scope.employees = [
         {EmployeeID: 'NV01', Name: 'huy', Position: 'Member', Email: 'huyle@gmail.com', PhoneNumber: '0957435290', Address: '9 nguyen thi minh khai, quan 1', Salary: 113, Bonus: 220, StartingDate: '2/10/2017' }
     ];
-    this.StartingDate = new Date();
-    this.isOpen = false;
 
     $scope.ShowEmployee = function(employee){
          var modalInstance = $uibModal.open({
@@ -112,6 +114,8 @@ app.controller('EmployeeController', ['$scope','$uibModal',
             }
         });
     };
+
+    $scope.init();
 }]);
 
 app.controller('CreateEmployeeController', ['$scope', '$uibModalInstance', 'employee', function($scope, $uibModalInstance, employee){
@@ -181,15 +185,20 @@ app.controller('HistoryController',['$scope', '$http', function ($scope, $http) 
         action: 's',
        },
     };
-   var url = '../Web/site/api/HistoryService.php';
+   var url = './site/api/HistoryService.php';
+   // var url = 'HistoryService.php';
    
     $scope.getHistory = function() {
       $http.get(url, config)
       .then(function(data){
           $scope.historys = data;
       });
-  };
-  $scope.init();
-  $scope.getHistory();  
+    };
+
+    $scope.Search = function(){
+
+    };
+    $scope.init();
+    $scope.getHistory();  
 }]);
 

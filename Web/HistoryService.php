@@ -1,5 +1,5 @@
 <?php
-require "././admin/database/database.php";
+require "./admin/database/database.php";
 
 $query = "SELECT * FROM history";
 $sel = mysqli_query($conn,$query);
