@@ -37,7 +37,7 @@
         </div>
     </div>
     <div class="col-sm-12">
-            <button id="btnCreate" class="btn btn-primary" style="text-align:right" ng-click="ShowDetail($employee)">Create New Employee</button>
+            <button href="javascipt:void(0)" id="btnCreate" class="btn btn-primary" style="text-align:right" ng-click="ShowEmployee(0)">Create New Employee</button>
     </div>
     <div class="col-sm-12">
         <div class="panel panel-default">
@@ -56,17 +56,17 @@
                     <th> Bonus </th>
                     <th> Starting Date </th>
                 </tr>
-                <tr ng-repeat="employee in employees | filter : test">
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ employee.EmployeeID }}</td>
-                    <td>{{ employee.Name }}</td>
-                    <td>{{ employee.Position }}</td>
-                    <td>{{ employee.Email }}</td>
-                    <td>{{ employee.PhoneNumber }}</td>
-                    <td>{{ employee.Address }}</td>
-                    <td>{{ employee.Salary }}</td>
-                    <td>{{ employee.Bonus }}</td>
-                    <td>{{ employee.StartingDate }}</td>
+                <tr ng-repeat="employee in employees" ng-click="ShowEmployee(employee)">
+                    <td ng-bind="index + 1"></td>
+                    <td ng-bind="employee.EmployeeID"></td>
+                    <td ng-bind="employee.Name"></td>
+                    <td ng-bind="employee.Position"></td>
+                    <td ng-bind="employee.Email"></td>
+                    <td ng-bind="employee.PhoneNumber"></td>
+                    <td ng-bind="employee.Address"></td>
+                    <td ng-bind="employee.Salary"></td>
+                    <td ng-bind="employee.Bonus"></td>
+                    <td ng-bind="employee.StartingDate"></td>
                 </tr>
             </table>
             </div>

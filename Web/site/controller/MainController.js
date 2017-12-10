@@ -91,41 +91,86 @@ app.controller('EmployeeController', ['$scope','$uibModal',
     $scope.employees = [
         {EmployeeID: 'NV01', Name: 'huy', Position: 'Member', Email: 'huyle@gmail.com', PhoneNumber: '0957435290', Address: '9 nguyen thi minh khai, quan 1', Salary: 113, Bonus: 220, StartingDate: '2/10/2017' }
     ];
-    this.myDate = new Date();
+    this.StartingDate = new Date();
     this.isOpen = false;
-    $scope.ShowDetail = function($employee){
+
+    $scope.ShowEmployee = function(employee){
          var modalInstance = $uibModal.open({
-            templateUrl: '/view/DetailEmployee.html',
-            controller: $employee > 0 ? 'UpdateEmployeeController' : 'CreateEmployeeController',
-            windowClass: "hmodal-info",
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: '../Web/site/view/DetailEmployee.html',
+            controller: employee != 0 ? 'UpdateEmployeeController' : 'CreateEmployeeController',
+            //windowClass: "hmodal-info",
             animation: false,
             size: 'lg',
             backdrop: 'static',
             keyboard: false,
             resolve: {
                 employee: function () {
-                    return $employee;
+                    return employee;
                 }
             }
         });
     };
 }]);
-app.controller('CreateEmployeeController', ['$scope', '$uibModalInstance', function($scope, $uibModalInstance){
+
+app.controller('CreateEmployeeController', ['$scope', '$uibModalInstance', 'employee', function($scope, $uibModalInstance, employee){
     console.log("Started CreateEmployee controller");
-    $scope.close = function () {
+    $scope.IsEdit = false;
+    $scope.init = function(){
+        $scope.newEmployeeModel = {
+            Name : '',
+            Email:'',
+            Phone:'',
+            Address:'',
+            StartingDate : new Date()
+        }
+    };
+    
+    $scope.Create = function(){
+
+    };
+    $scope.Close = function () {
         $uibModalInstance.dismiss('cancel');
     };
+
     $scope.Change = function () {
             if ($scope.form.$invalid)
                 return true;
-        }
+    };
+    $scope.init();
 }]);
-app.controller('UpdateEmployeeController', ['$scope', function($scope){
+
+app.controller('UpdateEmployeeController', ['$scope', '$uibModalInstance', 'employee', function($scope, $uibModalInstance, employee){
     console.log("Started CreateEmployee controller");
+    $scope.IsEdit = true;
+    $scope.init  = function(){
+
+    };
+
+    $scope.Close = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+
+    $scope.Update = function() {
+
+    };
     
+    $scope.init();
 }]);
 app.controller('HistoryController',['$scope', '$http', function ($scope, $http) {
   console.log("Started history controller");
+
+  $scope.init = function(){
+    $scope.historys = [];
+    $scope.SearchModel = {
+        FromDate : new Date(),
+        ToDate: new Date(),
+        Name :'',
+        EmployeeID: ''
+    }
+   };
+
   var config = {
     headers:{
         'Accept': 'application/json',
@@ -136,13 +181,9 @@ app.controller('HistoryController',['$scope', '$http', function ($scope, $http) 
         action: 's',
        },
     };
-   var url = 'HistoryService.php';
-   $scope.init = function(){
-    $scope.historys = [];
-    $scope.FromDate = new Date(); 
-    $scope.ToDate = new Date();
-   };
-  $scope.getHistory = function() {
+   var url = '../Web/site/api/HistoryService.php';
+   
+    $scope.getHistory = function() {
       $http.get(url, config)
       .then(function(data){
           $scope.historys = data;
