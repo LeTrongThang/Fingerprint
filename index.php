@@ -1,6 +1,6 @@
  <?php
  
-// Đường dẫn tới hệ  thống
+ // Đường dẫn tới hệ  thống
 define('PATH_SYSTEM', __DIR__ .'/system');
 define('PATH_APPLICATION', __DIR__ . '/site');
 require "./admin/database/database.php";
@@ -73,14 +73,14 @@ require "./admin/database/database.php";
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> 
                     <div class="col-lg-3 col-xs-3 col-sm-3">
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="#">
+                                <a href="./site/api/Logout.php">
                                         <span class="scope">
                                             <i class="glyphicon glyphicon-log-in"></i>
-                                            <span class="title-function hidden-sm hidden-xs">LOGIN</span>
+                                            <span class="title-function hidden-sm hidden-xs">LOGOUT</span>
                                         </span>
                                     </a>
                             </li>

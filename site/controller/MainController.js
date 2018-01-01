@@ -3,11 +3,11 @@
 var app = angular.module('Fingerprint', ['ngRoute','ngMaterial','ngTouch','ngAnimate','ui.bootstrap']);
 app.config(function ($routeProvider) {
     $routeProvider
-        .when("/", {
+        /*.when("/login", {
             templateUrl: "site/view/login.html",
             controller: "LoginController"
-        })
-        .when("/home", {
+        })*/
+        .when("/", {
             templateUrl: "site/view/fingerprint.html",
             controller: "FingerprintController"
         })
@@ -26,9 +26,9 @@ app.config(function ($routeProvider) {
             templateUrl: "site/view/history.html",
             controller: "HistoryController"
         })
-        // .otherwise({
-        //     redirectTo: "/"
-        // });
+        .otherwise({
+            redirectTo: "/"
+        });
 });
 
 var yearArray = new Array();
@@ -56,7 +56,7 @@ app.controller("FingerprintController", ['$scope', function($scope){
 }]);
 
 //Login Controller
-app.controller('LoginController',['$scope','$http','$location',
+/*app.controller('LoginController',['$scope','$http','$location',
  function ($scope, $http, $location) {
     console.log("Login Controller");
     $scope.init = function(){
@@ -72,12 +72,16 @@ app.controller('LoginController',['$scope','$http','$location',
                   'Password': $scope.User.Password
                  } 
           ).then(function(data){
-              console.log("test successful");
-              $location.path('/home');
+        	  if (data.loggedIn == 'true') {
+        		  $location.path('/home');
+        	  } else {
+        		  $location.path('/login');
+        	  }
+              
          });
     };
     $scope.init();
-}]);
+}]);*/
 
 // Salary Controller
 app.controller('SalaryController', function ($scope) {
