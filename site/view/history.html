@@ -1,0 +1,55 @@
+<div>
+    <div class="col-sm-12">
+    <div class="panel panel-default">
+            <div class="panel-heading">Search by condition</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                            <label class="control-label col-sm-3">Name</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" type="text" ng-model="SearchModel.Name" placeholder="Name">    
+                            </div>
+                            </div>
+                            <div class="form-group">
+                            <label class="control-label col-sm-3">Employee ID</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" type="text" ng-model="SearchModel.EmployeeID" placeholder="Employee ID">    
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <md-datepicker ng-model="SearchModel.FromDate" md-placeholder="From Date"></md-datepicker>
+                            <md-datepicker ng-model="SearchModel.ToDate" md-placeholder="To Date"></md-datepicker>
+                            <button style="text-align:right" type="button" class="btn btn-primary" ng-click="Search()">Search</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Result Search</div>
+            <div class="panel-body">
+                <table class="table footable">
+                    <thead>
+                        <tr>
+                            <th data-type="numeric" data-sort-initial="true">#</th>
+                            <th> EmployeeID </th>
+                            <th> Name </th>
+                            <th> Status </th>
+                            <th> Date </th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="history in historys">
+                        <td ng-bind="$index + 1"></td>
+                        <td ng-bind="history.employeeID"></td>
+                        <td ng-bind="history.name"></td>
+                        <td ng-bind="history.status = 1? 'Active' : 'Inactive'"></td>
+                        <td ng-bind="history.date"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

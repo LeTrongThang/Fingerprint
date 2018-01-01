@@ -1,0 +1,71 @@
+/*******************************************************************
+                                CUSTOM
+********************************************************************/
+/*                 HEADER              */
+
+
+#header .fix-border a{
+    font-family: Roboto,Helvetica Neue,sans-serif;
+}
+#header .fix-border a span.scope{
+    font-size: 19px;
+}
+#header .fix-border a span.scope i{
+    margin: 5px;
+}
+#header .fix-border .navbar-header a.navbar-brand{
+    margin: 4px;
+    font-size: 19px;
+}
+#header .fix-border .navbar-right li span.scope{
+    font-size: 19px;
+}
+#header .fix-border .navbar-right li span.scope i{
+    margin: 3px;
+}
+.fix-border{
+    border-radius: 0px;
+}
+.custom{
+    min-height: 59px;
+}
+@media (min-width: 306px) {
+    ul.navbar-center{
+        display: flex;
+    }
+}
+#header .fix-border .custom ul.nav>li {
+    position: relative;
+    display: block;
+    margin: auto;
+}   
+#header .fix-border .custom ul.navbar-center>li {
+    position: relative;
+    display: block;
+    margin: auto;
+} 
+@media (min-width: 768px) {
+    #header .fix-border a span.scope {
+        font-size: 17px;
+    }
+} 
+@media (max-height: 800px) {
+    #header .fix-border a span.scope {
+        font-size: 17px;
+    }
+} 
+#header .fix-border .custom ul.navbar-center li:hover {
+    background : lightblue;
+}
+.item{
+    height: 500px;
+}
+.Employee-input {
+    border-right-width: 30px;
+}
+.modal {
+    display: block;
+}
+.modal-dialog {
+    top: 100px;
+}
