@@ -17,12 +17,10 @@ require "./admin/database/database.php";
     <!-- bootstraps library -->
     <link rel="stylesheet" href="Libs/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="Libs/bootstrap/css/bootstrap-theme.min.css">
-
     <!-- footable -->
-    <link rel="stylesheet" href="/node_modules/footable/css/footable.standalone.min.css">
-
+    <!-- <link rel="stylesheet" href="/node_modules/footable/css/footable.standalone.min.css"> -->
     <!-- AngularJS Material -->
-    <link rel="stylesheet" href="/node_modules/angular-material/angular-material.css">
+    <link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
 
     <link rel="stylesheet" href="public/css/layout.css" />
 </head>
