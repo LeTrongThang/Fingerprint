@@ -19,10 +19,10 @@ while($mqtt->proc()){
 }
 $mqtt->close();
 function procmsg($topic, $msg){
-		echo "Msg Recieved: " . date("r") . "\n";
-		echo "Topic: {$topic}\n\n";
+		//echo "Msg Recieved: " . date("r") . "\n";
+		//echo "Topic: {$topic}\n\n";
 		//echo "\t$msg\n\n";
-		var_dump($msg);
-		die;
+		// var_dump($msg);
+		// die;
 		json_decode($msg);
 }

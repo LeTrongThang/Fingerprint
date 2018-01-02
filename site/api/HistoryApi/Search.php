@@ -9,8 +9,19 @@ $EmployeeID = mysqli_real_escape_string($conn, $input->EmployeeID);
 $FromDate = mysqli_real_escape_string($conn, $input->FromDate);
 $ToDate = mysqli_real_escape_string($conn, $input->ToDate);
 
-$query = "SELECT * FROM history WHERE EmployeeID = '$EmployeeID' AND Name = '$Name'";
+function IsNullOrEmptyString($question){
+        return (!isset($question) || trim($question)==='');
+}
+$query = "SELECT * FROM history WHERE Date BETWEEN '$FromDate' AND '$ToDate'";
 
+if (!IsNullOrEmptyString($EmployeeID)){
+        $query = $query . "AND EmployeeID = '$EmployeeID'";
+}
+
+if (!IsNullOrEmptyString($Name)) {
+        $query = $query . "AND Name = '$Name'";
+}
+ 
 $data = array();
 
 // retrieve data responses
@@ -19,5 +30,4 @@ while($row = mysqli_fetch_array($result)) {
         $data[] = array("HistoryId"=>$row['HistoryId'],"EmployeeID"=>$row['EmployeeID'],"Name"=>$row['Name'],"Status"=>$row['Status'], "Date"=>$row['Date'] );
 }
 echo json_encode($data);
-
 ?>

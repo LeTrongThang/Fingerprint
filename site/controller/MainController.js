@@ -88,7 +88,23 @@ app.controller('SalaryController',['$scope','$http',
     $scope.init = function(){
         $scope.getAllSalary();
     }
-    
+    $scope.config = {
+        headers:{
+            'Accept': 'application/json',
+            'requestType':'angularJS',
+            'Cache-Control': 'no-cach, no-store, must-revalidate',
+            'Pragame':'no-catch',
+            'Expries': 0,
+            action: 's',
+           },
+    };
+    var url = './site/api/SalaryApi/GetAllSalary.php';
+    $scope.getAllSalary = function() {
+        $http.get(url, $scope.config)
+        .then(function(data){
+            $scope.Salarys = data.data;
+        });
+    };
     $scope.selectedYear = currentYear;
 
     var month = new Array();
@@ -108,23 +124,8 @@ app.controller('SalaryController',['$scope','$http',
     $scope.selectedMonth = n;
     $scope.months = month;
     $scope.years = createYearArray();
-    $scope.config = {
-        headers:{
-            'Accept': 'application/json',
-            'requestType':'angularJS',
-            'Cache-Control': 'no-cach, no-store, must-revalidate',
-            'Pragame':'no-catch',
-            'Expries': 0,
-            action: 's',
-           },
-    };
-    var url = './site/api/SalaryApi/GetAllSalary.php';
-    $scope.getAllSalary = function() {
-        $http.get(url, scope.config)
-        .then(function(data){
-            $scope.Salarys = data.data;
-        });
-    };
+    
+    
 
     $scope.init();
 }]);
@@ -324,7 +325,7 @@ app.controller('UpdateEmployeeController', ['$scope', '$uibModalInstance', 'Empl
     $scope.init();
 }]);
 
-app.controller('HistoryController',['$scope', '$http', function ($scope, $http) {
+app.controller('HistoryController',['$scope', '$http', '$timeout', '$interval', function ($scope, $http, $timeout,$interval) {
   console.log("Started history controller");
 
   $scope.init = function(){
@@ -335,6 +336,33 @@ app.controller('HistoryController',['$scope', '$http', function ($scope, $http) 
         Name :'',
         EmployeeID: ''
     }
+    };
+    $scope.HistorySubscribe = function() {
+        $http.get(urlSubscribe, configSubscribe)
+        .then(function(data){
+            $scope.HistoryInfo = data.msg;
+            // Processing string to save to  DB
+            console.log(data);
+            //$scope.historys = $scope.historys.concat($scope.history);
+        });
+    };
+    
+    $interval(function () {
+        //$scope.theTime = new Date().toLocaleTimeString();
+        $scope.HistorySubscribe();
+        //alert("aa");
+    }, 10*1000);
+    
+    var config = {
+    headers:{
+        'Accept': 'application/json',
+        'requestType':'angularJS',
+        'Cache-Control': 'no-cach, no-store, must-revalidate',
+        'Pragame':'no-catch',
+        'Expries': 0,
+        action: 's',
+       },
+    };
     var urlSubscribe ='./site/api/mqtt/HistorySubscribe.php';
     var configSubscribe = {
         headers:{
@@ -345,34 +373,16 @@ app.controller('HistoryController',['$scope', '$http', function ($scope, $http) 
             'Expries': 0,
             action: 's',
            },
-        };
-        $scope.getHistory = function() {
-            $http.get(urlSubscribe, configSubscribe)
-            .then(function(data){
-                $scope.history = data.msg;
-                $scope.historys = $scope.historys.concat($scope.history);
-            });
-          };
-   };
-
-  var config = {
-    headers:{
-        'Accept': 'application/json',
-        'requestType':'angularJS',
-        'Cache-Control': 'no-cach, no-store, must-revalidate',
-        'Pragame':'no-catch',
-        'Expries': 0,
-        action: 's',
-       },
     };
+    
    var url = './site/api/HistoryApi/GetHistory.php';
    
-    $scope.getHistory = function() {
-      $http.get(url, config)
-      .then(function(data){
-          $scope.historys = data.data;
-      });
-    };
+    // $scope.getHistory = function() {
+    //   $http.get(url, config)
+    //   .then(function(data){
+    //       $scope.historys = data.data;
+    //   });
+    // };
 
     $scope.Search = function(){
        var res = $http.post(
@@ -384,8 +394,7 @@ app.controller('HistoryController',['$scope', '$http', function ($scope, $http) 
             $scope.historys = data.data;
         });
     };
-
+    //$scope.Get();
     $scope.init();
-    $scope.getHistory();  
 }]);
 
