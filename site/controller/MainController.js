@@ -83,12 +83,12 @@ app.controller("FingerprintController", ['$scope', function($scope){
 }]);*/
 
 // Salary Controller
-app.controller('SalaryController', function ($scope) {
-
-    $scope.employees = [
-        { Name: 'huy', Room: 'A3', Salary: 113 },
-        { Name: 'le', Room: 'A2', Salary: 11 }
-    ];
+app.controller('SalaryController',['$scope','$http', 
+  function ($scope, $http) {
+    $scope.init = function(){
+        $scope.getAllSalary();
+    }
+    
     $scope.selectedYear = currentYear;
 
     var month = new Array();
@@ -108,7 +108,26 @@ app.controller('SalaryController', function ($scope) {
     $scope.selectedMonth = n;
     $scope.months = month;
     $scope.years = createYearArray();
-});
+    $scope.config = {
+        headers:{
+            'Accept': 'application/json',
+            'requestType':'angularJS',
+            'Cache-Control': 'no-cach, no-store, must-revalidate',
+            'Pragame':'no-catch',
+            'Expries': 0,
+            action: 's',
+           },
+    };
+    var url = './site/api/SalaryApi/GetAllSalary.php';
+    $scope.getAllSalary = function() {
+        $http.get(url, scope.config)
+        .then(function(data){
+            $scope.Salarys = data.data;
+        });
+    };
+
+    $scope.init();
+}]);
 
 // Employee Controller
 app.controller('EmployeeController', ['$scope','$uibModal','$http',
@@ -116,6 +135,12 @@ app.controller('EmployeeController', ['$scope','$uibModal','$http',
     $scope.init = function(){
         this.StartingDate = new Date();
         this.isOpen = false;
+        $scope.SearchModel = {
+            Name : '',
+            EmployeeID : '',
+            PhoneNumber : '',
+            Email : '',
+        };
         $scope.getAllEmployee();         
     };
     var config = {
@@ -153,6 +178,17 @@ app.controller('EmployeeController', ['$scope','$uibModal','$http',
             }
         });
     }
+
+    $scope.Search = function(){
+        var res = $http.post(
+            './site/api/EmployeeApi/Search.php', {'Name': $scope.SearchModel.Name,
+                                                 'EmployeeID':$scope.SearchModel.EmployeeID,
+                                                 'PhoneNumber':$scope.SearchModel.PhoneNumber,
+                                                 'Email':$scope.SearchModel.Email} 
+          ).then(function(data){
+             $scope.employees = data.data;
+         });
+    }
     $scope.init();
 }]);
 
@@ -177,7 +213,6 @@ app.controller('CreateEmployeeController',['$scope','parent','$uibModalInstance'
 
     $scope.Create = function(){
         $scope.StartingDate = moment($scope.newEmployeeModel.StartingDate).format('YYYY-MM-DD');
-
         var res = $http.post(
                 './site/api/EmployeeApi/Create.php',{'Name': $scope.newEmployeeModel.Name,
                                                     'Position':$scope.newEmployeeModel.Position,

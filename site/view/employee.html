@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<body ng-controller="EmployeeController">
+<body>
     <div class="col-sm-12">
         <div class="panel panel-default">
         <div class="panel-heading">Search by condition</div>
@@ -9,7 +9,7 @@
                 <label class="control-label col-sm-3">Name</label>
                 <div class="col-sm-9">
                   <input class="form-control" type="text" ng-model="SearchModel.Name" placeholder="Search name">
-                  </div>
+                </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-3">Employee ID</label>
@@ -31,7 +31,7 @@
                   <input  class="form-control" type="text" ng-model="SearchModel.PhoneNumber" placeholder="PhoneNumber">
                 </div>
             </div>
-            <button style="text-align:right" type="button" class="btn btn-primary" ng-click="SearchModel.Search()">Search</button>
+            <button style="text-align:right" type="button" class="btn btn-primary" ng-click="Search()">Search</button>
         </div>
         </div>
         </div>
@@ -60,9 +60,12 @@
                             </tr>
                         </thead>
                         <tbody ng-if="employees.length > 0">
-                            <tr ng-repeat="employee in employees" ng-click="ShowEmployee(employee.EmployeeID)">
+                            <tr ng-repeat="employee in employees">
                                 <td ng-bind="$index + 1"></td>
-                                <td ng-bind="employee.EmployeeID"></td>
+                                <td>
+                                    <a href="javascript: void(0)" ng-bind="employee.EmployeeID"  ng-click="ShowEmployee(employee.EmployeeID)">
+                                    </a>
+                                </td>
                                 <td ng-bind="employee.Name"></td>
                                 <td ng-bind="employee.Position"></td>
                                 <td ng-bind="employee.Email"></td>
