@@ -4,6 +4,7 @@
 define('PATH_SYSTEM', __DIR__ .'/system');
 define('PATH_APPLICATION', __DIR__ . '/site');
 require "./admin/database/database.php";
+include('./site/api/session.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

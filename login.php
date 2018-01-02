@@ -1,33 +1,9 @@
 <?php
 define('PATH_SYSTEM', __DIR__ .'/system');
 define('PATH_APPLICATION', __DIR__ . '/site');
-require "./admin/database/database.php";
-
-session_unset('loggedin');
-session_unset('username');
-$username = "";
-$password = "";
-$accountError = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username=$_POST['username'];
-    $password=$_POST['password'];
-    
-    $query = "SELECT * from user where Username = '$username' and Password = '$password'";
-    $data = mysqli_query($conn, $query);
-
-    $check = false;
-    while($row = mysqli_fetch_array($data)) {
-        $check = true;
-    }
-
-    if ($check) {
-        session_start();
-        $_SESSION['loggedin'] = true;
-        $_SESSION['username'] = $username;
-        header('Location: ./index.php');
-    } else {
-        $accountError = "Username or password is incorrect!";
-    }
+include('./site/api/CommonCheckSession.php');
+if(isset($_SESSION['login_user'])){
+    header('Location: ./index.php');
 }
 ?>
 <!DOCTYPE html>
@@ -74,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     	<div>
 			<div class="modal" tabindex="-1" role="dialog">
 			    <div class="modal-dialog" role="document">
-			        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="myLogin" method="post">
+			        <form action="" id="myLogin" method="post">
 			          <div class="modal-content">
 			            <div class="modal-header">
 			              <h5 class="modal-title">Login</h5>

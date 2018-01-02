@@ -4,5 +4,6 @@ $username = "root";
 $password = "";
 $dbName   = "fingerprint";
 
-$conn = mysqli_connect($servername, $username, $password, $dbName) or die("Kết không nối thành công");
+$conn = mysql_connect($servername, $username, $password);
+$db = mysql_select_db($dbName, $conn);
 ?>
