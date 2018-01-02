@@ -1,5 +1,4 @@
 
-
 var app = angular.module('Fingerprint', ['ngRoute','ngMaterial','ngTouch','ngAnimate','ui.bootstrap']);
 app.config(function ($routeProvider) {
     $routeProvider
@@ -192,9 +191,21 @@ app.controller('CreateEmployeeController',['$scope','parent','$uibModalInstance'
                                                     'EmployeeID':$scope.newEmployeeModel.EmployeeID,
                                                 } 
           ).then(function(data){
-             if(data.data == 0) {
+             if(parseInt(data.data) == 1)  // if create succesfful
+             {
                  $scope.Close();
+                 swal("Create Employee Info Successfull. Sending to Fingerprint System!");
+                 parent.getAllEmployee();
                  // Send to NodeMCU
+                 var res = $http.post(
+                    './site/api/mqtt/CreateEmployeePublish.php', {'EmployeeID': $scope.newEmployeeModel.EmployeeID,
+                                                    'Name': $scope.newEmployeeModel.Name,
+                                                    'Position':$scope.newEmployeeModel.Position,}
+                  ).then(function(data){
+
+                 });
+             } else {
+                swal("Create Employee Info fail. Please do again or contacting maanger!");
              }
          });
     }
@@ -244,7 +255,7 @@ app.controller('UpdateEmployeeController', ['$scope', '$uibModalInstance', 'Empl
             return true;
     }
 
-    $scope.Close = function () {
+    $scope.Close = function(){
         $uibModalInstance.close('save');
     }
 
@@ -263,9 +274,15 @@ app.controller('UpdateEmployeeController', ['$scope', '$uibModalInstance', 'Empl
                                                     'EmployeeID':$scope.newEmployeeModel.EmployeeID,
                                                 } 
             ).then(function(data){
-                if(data.Code == 0) {
+                if(parseInt(data.data) == 1) {
+                    $scope.Close();
+                    swal("Update Employee Info Successfull!");
+                    parent.getAllEmployee();
                     // Notify update employee info successfully
                 }
+                else {
+                    swal("Update Employee Info fail. Please do again or contacting maanger!");
+                 }
             });
     };
     
@@ -283,6 +300,24 @@ app.controller('HistoryController',['$scope', '$http', function ($scope, $http) 
         Name :'',
         EmployeeID: ''
     }
+    var urlSubscribe ='./site/api/mqtt/HistorySubscribe.php';
+    var configSubscribe = {
+        headers:{
+            'Accept': 'application/json',
+            'requestType':'angularJS',
+            'Cache-Control': 'no-cach, no-store, must-revalidate',
+            'Pragame':'no-catch',
+            'Expries': 0,
+            action: 's',
+           },
+        };
+        $scope.getHistory = function() {
+            $http.get(urlSubscribe, configSubscribe)
+            .then(function(data){
+                $scope.history = data.msg;
+                $scope.historys = $scope.historys.concat($scope.history);
+            });
+          };
    };
 
   var config = {
@@ -300,7 +335,7 @@ app.controller('HistoryController',['$scope', '$http', function ($scope, $http) 
     $scope.getHistory = function() {
       $http.get(url, config)
       .then(function(data){
-          $scope.historys = data;
+          $scope.historys = data.data;
       });
     };
 

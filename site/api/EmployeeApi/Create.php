@@ -21,13 +21,13 @@ $query = "INSERT INTO employee(EmployeeID, Name, Position, Email, Address, Phone
 // query for inserting 
 
 if(mysqli_query($conn, $query)){
-    echo "Data Inserted";
     $data = 1;
-    return $data;
+    $json = json_encode($data);
+    echo $json;
 }
-else {
-    echo "Error";
+    else {
     $data = 0;
-    return $data;
+    $json = json_encode($data);
+    echo $json;
 }
 ?>

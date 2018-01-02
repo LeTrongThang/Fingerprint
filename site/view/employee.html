@@ -42,33 +42,46 @@
     <div class="col-sm-12">
         <div class="panel panel-default">
             <div class="panel-heading">Result condition</div>
-            <div class="panel-body">  
-            <table class="table">
-                <tr>
-                    <th>#</th>
-                    <th> EmployeeID </th>
-                    <th> Name </th>
-                    <th> Position </th>
-                    <th> Email </th>
-                    <th> Phone Number </th>
-                    <th> Address </th>
-                    <th> Salary </th>
-                    <th> Bonus </th>
-                    <th> Starting Date </th>
-                </tr>
-                <tr ng-repeat="employee in employees" ng-click="ShowEmployee(employee.EmployeeID)">
-                    <td ng-bind="$index + 1"></td>
-                    <td ng-bind="employee.EmployeeID"></td>
-                    <td ng-bind="employee.Name"></td>
-                    <td ng-bind="employee.Position"></td>
-                    <td ng-bind="employee.Email"></td>
-                    <td ng-bind="employee.PhoneNumber"></td>
-                    <td ng-bind="employee.Address"></td>
-                    <td ng-bind="employee.Salary |number : 0"></td>
-                    <td ng-bind="employee.Bonus"></td>
-                    <td ng-bind="employee.StartingDate"></td>
-                </tr>
-            </table>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th> EmployeeID </th>
+                                <th> Name </th>
+                                <th> Position </th>
+                                <th> Email </th>
+                                <th> Phone Number </th>
+                                <th> Address </th>
+                                <th> Salary </th>
+                                <th> Bonus </th>
+                                <th> Starting Date </th>
+                            </tr>
+                        </thead>
+                        <tbody ng-if="employees.length > 0">
+                            <tr ng-repeat="employee in employees" ng-click="ShowEmployee(employee.EmployeeID)">
+                                <td ng-bind="$index + 1"></td>
+                                <td ng-bind="employee.EmployeeID"></td>
+                                <td ng-bind="employee.Name"></td>
+                                <td ng-bind="employee.Position"></td>
+                                <td ng-bind="employee.Email"></td>
+                                <td ng-bind="employee.PhoneNumber"></td>
+                                <td ng-bind="employee.Address"></td>
+                                <td ng-bind="employee.Salary |number : 0"></td>
+                                <td ng-bind="employee.Bonus"></td>
+                                <td ng-bind="employee.StartingDate"></td>
+                            </tr>
+                        </tbody>
+                        <tbody ng-if="employees.length == 0" class="text-center">
+                            <tr>
+                                <td colspan="10" class="text-center">
+                                    Không tìm thấy kết quả phù hợp
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+               </div>  
             </div>
         </div>
     </div>

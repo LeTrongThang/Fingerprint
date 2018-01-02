@@ -27,10 +27,12 @@ $query = "UPDATE employee SET   Name = '".$Name."',
 
 if(mysqli_query($conn, $query)) {
     $data = 1;
-    return $data;
+    $json = json_encode($data);
+    echo $json;
 }
 else {
     $data = 0;
-    return $data;
+    $json = json_encode($data);
+    echo $json;
 }
 ?>

@@ -1,0 +1,16 @@
+{
+    "name": "lehuy/fingerprint",
+    "description": "fingerprint web to employee manage",
+    "type": "project",
+    "require": {
+        "bluerhinos/phpmqtt": "dev-master"
+    },
+    "license": "UNLICENSED",
+    "authors": [
+        {
+            "name": "Huy Le",
+            "email": "lehuy.paul@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}

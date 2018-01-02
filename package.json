@@ -1,0 +1,38 @@
+{
+  "name": "fingerprint",
+  "version": "1.0.0",
+  "description": "manage employee via module fingerprint",
+  "main": "MainController.js",
+  "dependencies": {
+    "angular": "^1.6.8",
+    "angular-animate": "^1.6.8",
+    "angular-aria": "^1.6.8",
+    "angular-footable": "^0.0.3",
+    "angular-material": "^1.1.5",
+    "angular-messages": "^1.6.8",
+    "angular-route": "^1.6.8",
+    "angular-touch": "^1.6.8",
+    "angular-ui-bootstrap": "^2.5.6",
+    "bootstrap": "^3.3.7",
+    "moment": "^2.20.1",
+    "ngsweetalert": "^1.0.1",
+    "sweetalert": "^2.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "null"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huyle0110/Fingerprint.git"
+  },
+  "keywords": [
+    "fingerprint"
+  ],
+  "author": "huyle",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/huyle0110/Fingerprint/issues"
+  },
+  "homepage": "https://github.com/huyle0110/Fingerprint#readme"
+}

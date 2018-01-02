@@ -41,13 +41,22 @@
                             <th> Date </th>
                         </tr>
                     </thead>
-                    <tr ng-repeat="history in historys">
-                        <td ng-bind="$index + 1"></td>
-                        <td ng-bind="history.EmployeeID"></td>
-                        <td ng-bind="history.Name"></td>
-                        <td ng-bind="history.Status == 1? 'Active' : 'Inactive'"></td>
-                        <td ng-bind="history.Date"></td>
-                    </tr>
+                    <tbody ng-if="historys.length > 0">
+                        <tr ng-repeat="history in historys">
+                            <td ng-bind="$index + 1"></td>
+                            <td ng-bind="history.EmployeeID"></td>
+                            <td ng-bind="history.Name"></td>
+                            <td ng-bind="history.Status == 1? 'Active' : 'Inactive'"></td>
+                            <td ng-bind="history.Date"></td>
+                        </tr>
+                    </tbody>
+                    <tbody ng-if="historys.length == 0" class="text-center">
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                Không tìm thấy kết quả phù hợp
+                            </td>
+                        </tr>
+                 </tbody>
                 </table>
             </div>
         </div>
