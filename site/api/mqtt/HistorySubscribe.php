@@ -7,12 +7,13 @@ $port = 16559;                     // change if necessary
 $username = "aqdtlsiy";                   // set your username
 $password = "2NjLYbDRbQZi";                   // set your password
 $client_id = "fingerprint"; // make sure this is unique for connecting to sever - you could use uniqid()
-
+set_time_limit(0);
 $mqtt = new phpMQTT($server, $port, $client_id);
 if(!$mqtt->connect(true, NULL, $username, $password)) {
 	exit(1);
 }
-$topics['fingerprint/scan'] = array("qos" => 0, "function" => "procmsg");
+
+$topics['scan'] = array("qos" => 0, "function" => "procmsg");
 $mqtt->subscribe($topics, 0);
 while($mqtt->proc()){
 		
@@ -22,7 +23,8 @@ function procmsg($topic, $msg){
 		//echo "Msg Recieved: " . date("r") . "\n";
 		//echo "Topic: {$topic}\n\n";
 		//echo "\t$msg\n\n";
-		// var_dump($msg);
-		// die;
+		 var_dump($msg);
+		 die();
 		json_decode($msg);
 }
+ 

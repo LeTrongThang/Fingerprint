@@ -1,3 +1,5 @@
+'use strict';
+var mqtt = require('mqtt');
 
 var app = angular.module('Fingerprint', ['ngRoute','ngMaterial','ngTouch','ngAnimate','ui.bootstrap']);
 app.config(function ($routeProvider) {
@@ -325,22 +327,28 @@ app.controller('HistoryController',['$scope', '$http', '$timeout', '$interval', 
         Name :'',
         EmployeeID: ''
     }
+    $scope.HistorySubscribe();
     };
     $scope.HistorySubscribe = function() {
         $http.get(urlSubscribe, configSubscribe)
         .then(function(data){
+            console.log("Subscribing...");
             $scope.HistoryInfo = data.msg;
             // Processing string to save to  DB
+            var res = $http.post(
+                './site/api/HistoryApi/Message.php',{'Message': data.msg
+                                                } 
+          ).then(function(data){});
             console.log(data);
             //$scope.historys = $scope.historys.concat($scope.history);
         });
     };
     
-    $interval(function () {
-        //$scope.theTime = new Date().toLocaleTimeString();
-        $scope.HistorySubscribe();
-        //alert("aa");
-    }, 10*1000);
+    // $interval(function () {
+    //     //$scope.theTime = new Date().toLocaleTimeString();
+    //     $scope.HistorySubscribe();
+    //     //alert("aa");
+    // }, 30*1000);
     
     var config = {
     headers:{
