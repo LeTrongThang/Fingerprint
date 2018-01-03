@@ -1,5 +1,5 @@
 'use strict';
-var mqtt = require('mqtt');
+
 
 var app = angular.module('Fingerprint', ['ngRoute','ngMaterial','ngTouch','ngAnimate','ui.bootstrap']);
 app.config(function ($routeProvider) {
@@ -224,10 +224,22 @@ app.controller('CreateEmployeeController',['$scope','parent','$uibModalInstance'
                  swal("Create Employee Info Successfull. Sending to Fingerprint System!");
                  parent.getAllEmployee();
                  // Send to NodeMCU
+                 var position;
+                 switch($scope.newEmployeeModel.Position){
+                     case "Staff":  
+                       position = 1;
+                       break;
+                     case "Leader":  
+                       position = 2;
+                       break;
+                     case "Manager":  
+                       position = 3;
+                       break;
+                 }
                  var res = $http.post(
                     './site/api/mqtt/CreateEmployeePublish.php', {'EmployeeID': $scope.newEmployeeModel.EmployeeID,
                                                     'Name': $scope.newEmployeeModel.Name,
-                                                    'Position':$scope.newEmployeeModel.Position,}
+                                                    'Position':position,}
                   ).then(function(data){
 
                  });
@@ -333,13 +345,13 @@ app.controller('HistoryController',['$scope', '$http', '$timeout', '$interval', 
         $http.get(urlSubscribe, configSubscribe)
         .then(function(data){
             console.log("Subscribing...");
-            $scope.HistoryInfo = data.msg;
+            $scope.HistoryInfo = data.data;
+            console.log(data.data);
             // Processing string to save to  DB
             var res = $http.post(
-                './site/api/HistoryApi/Message.php',{'Message': data.msg
+                './site/api/HistoryApi/Message.php',{'Message': data.data
                                                 } 
           ).then(function(data){});
-            console.log(data);
             //$scope.historys = $scope.historys.concat($scope.history);
         });
     };
