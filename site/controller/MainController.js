@@ -30,22 +30,6 @@ app.config(function ($routeProvider) {
         });
 });
 
-var yearArray = new Array();
-var currentTime = new Date();
-var currentYear = currentTime.getFullYear();
-var currentMonth = currentTime.getMonth();
-function createYearArray() {
-    var year;
-    var firstYear = 2010;
-    var temp = true;
-    if (yearArray.length == 0) {
-        while (firstYear <= currentYear) {
-            year = yearArray.push(firstYear);
-            firstYear++;
-        }
-    }
-    return yearArray;
-}
 // Fingerprint Controller
 app.controller("FingerprintController", ['$scope', function($scope){
     $scope.init = function(){
@@ -86,6 +70,16 @@ app.controller("FingerprintController", ['$scope', function($scope){
 app.controller('SalaryController',['$scope','$http', 
   function ($scope, $http) {
     $scope.init = function(){
+    $scope.currentTime = new Date();
+    $scope.currentYear = $scope.currentTime.getFullYear();
+    $scope.currentMonth = $scope.currentTime.getMonth();
+        $scope.SearchModel = {
+            Month: $scope.currentMonth + 1,
+            Year: $scope.currentYear,
+            Name: ''
+        };
+        $scope.years = $scope.createYearArray();
+
         $scope.getAllSalary();
     }
     $scope.config = {
@@ -98,6 +92,19 @@ app.controller('SalaryController',['$scope','$http',
             action: 's',
            },
     };
+    $scope.createYearArray =  function (){
+        var year;
+        var firstYear = 2010;
+        var temp = true;
+        $scope.yearArray = new Array();
+        if ($scope.yearArray.length == 0) {
+            while (firstYear <= $scope.currentYear) {
+                year = $scope.yearArray.push(firstYear);
+                firstYear++;
+            }
+        }
+        return $scope.yearArray;
+    }
     var url = './site/api/SalaryApi/GetAllSalary.php';
     $scope.getAllSalary = function() {
         $http.get(url, $scope.config)
@@ -105,28 +112,9 @@ app.controller('SalaryController',['$scope','$http',
             $scope.Salarys = data.data;
         });
     };
-    $scope.selectedYear = currentYear;
+    $scope.Search = function(){
 
-    var month = new Array();
-    month[0] = "January";
-    month[1] = "February";
-    month[2] = "March";
-    month[3] = "April";
-    month[4] = "May";
-    month[5] = "June";
-    month[6] = "July";
-    month[7] = "August";
-    month[8] = "September";
-    month[9] = "October";
-    month[10] = "November";
-    month[11] = "December";
-    var n = month[currentTime.getMonth()];
-    $scope.selectedMonth = n;
-    $scope.months = month;
-    $scope.years = createYearArray();
-    
-    
-
+    }
     $scope.init();
 }]);
 
@@ -134,6 +122,7 @@ app.controller('SalaryController',['$scope','$http',
 app.controller('EmployeeController', ['$scope','$uibModal','$http',
     function ($scope, $uibModal, $http) {
     $scope.init = function(){
+        console.log('Start EmployeeController');
         this.StartingDate = new Date();
         this.isOpen = false;
         $scope.SearchModel = {
