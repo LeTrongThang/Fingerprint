@@ -121,5 +121,10 @@ require "./admin/database/database.php";
      
     <!-- Controller -->
     <script type="text/javascript" src = "site/controller/MainController.js"></script>
+    <script type="text/javascript" src = "site/controller/Fingerprint.js"></script>
+    <script type="text/javascript" src = "site/controller/SalaryController.js"></script>
+    <script type="text/javascript" src = "site/controller/EmployeeController.js"></script>
+    <script type="text/javascript" src = "site/controller/HistoryController.js"></script>
+    <script type="text/javascript" src = "site/controller/CalendarController.js"></script>
 </body>
 </html>
