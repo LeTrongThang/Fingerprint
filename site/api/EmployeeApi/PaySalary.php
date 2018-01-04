@@ -23,7 +23,10 @@ $result = $conn->query($query);
 // }
 foreach(mysqli_fetch_assoc($result) as $employee){
    // save a employee into salary
-   
+   var_dump($employee);
+    die();
+    //  $querySave = "INSERT INTO employee(EmployeeID, Name, Position, , Salary, Bonus, Month, Year)
+    //  VALUES ('$EmployeeID', '$EmployeeID.Name','$Salary','$Bonus', '$Month', '$Year')";
 }
 
 // Save salary of all employees into salaty
