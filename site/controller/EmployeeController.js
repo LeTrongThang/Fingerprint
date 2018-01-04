@@ -58,6 +58,43 @@ $scope.Search = function(){
          $scope.employees = data.data;
      });
 }
+$scope.Close = function(){
+    $uibModalInstance.close('save');
+}
+
+$scope.Delete = function(EmployeeID) {
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, Employee info will be deleted from fingerprint!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+            var res = $http.post(
+                './site/api/EmployeeApi/Delete.php', {'EmployeeID':EmployeeID}
+                ).then(function(data){
+                    if(parseInt(data.data) == 1) {
+                        swal("Delete Employee Info Successfull!");
+                        // publish to broker
+                        var res = $http.post(
+                            './site/api/mqtt/PublishDeleteEmployee.php', {'EmployeeID':EmployeeID}
+                          ).then(function(data){
+                         });
+                        $scope.getAllEmployee();
+                    }
+                    else {
+                        swal("Delete Employee Info fail. Please do again or contacting maanger!");
+                     }
+                });
+        } else {
+            $scope.getAllEmployee();
+        }
+      });
+    
+}
+
 $scope.init();
 }]);
 
@@ -114,11 +151,10 @@ $scope.Create = function(){
                    break;
              }
              var res = $http.post(
-                './site/api/mqtt/CreateEmployeePublish.php', {'EmployeeID': $scope.newEmployeeModel.EmployeeID,
+                './site/api/mqtt/PublishCreateEmployee.php', {'EmployeeID': $scope.newEmployeeModel.EmployeeID,
                                                 'Name': $scope.newEmployeeModel.Name,
                                                 'Position':position,}
               ).then(function(data){
-
              });
          } else {
             swal("Create Employee Info fail. Please do again or contacting maanger!");

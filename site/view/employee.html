@@ -57,6 +57,7 @@
                                 <th> Salary </th>
                                 <th> Bonus </th>
                                 <th> Starting Date </th>
+                                <th> Action</th>
                             </tr>
                         </thead>
                         <tbody ng-if="employees.length > 0">
@@ -74,6 +75,11 @@
                                 <td ng-bind="employee.Salary |number : 0"></td>
                                 <td ng-bind="employee.Bonus"></td>
                                 <td ng-bind="employee.StartingDate"></td>
+                                <td>
+                                    <a href="javascript: void(0)" ng-click="Delete(employee.EmployeeID)">
+                                        Delete
+                                    </a>
+                                </td>
                             </tr>
                         </tbody>
                         <tbody ng-if="employees.length == 0" class="text-center">
