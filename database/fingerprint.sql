@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2018 at 11:28 AM
+-- Generation Time: Jan 04, 2018 at 12:22 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -61,32 +61,14 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`EmployeeID`, `Name`, `Position`, `Email`, `Address`, `PhoneNumber`, `StartingDate`, `InsuranceID`, `Dayoff`, `Salary`, `Bonus`, `Authen`) VALUES
-('23423', '4234234', 'Leader', '234234', '234234', 985752395, '2018-01-02T00:00:00.000Z', 234234, 0, 234234, 0, ''),
-('234234', '234234', 'Staff', '234234', '234234', 94234, '2018-01-02', 234234234, 0, 234234, 0, ''),
-('345345', '5345345', 'Staff', '345345', '345345', 345345, '2018-01-02', 345345, 0, 345345, 0, ''),
-('3453453523', '345345', 'Staff', '34534', '345345', 5345, '2018-01-02', 345345, 0, 345345, 0, ''),
-('35345', '345345', 'Staff', '345345', '345345', 345345345, '2018-01-02', 345345, 0, 345345, 0, ''),
-('4345', '345345', 'Staff', '34534', '345345', 345345, '2018-01-02', 345345, 0, 345345, 0, ''),
-('45345', '345345', 'Staff', '345345', '345345', 345345, '2018-01-02', 345345345, 0, 345345, 0, ''),
-('53453', '345345', 'Staff', '345345', '345345', 345345, '2018-01-02', 345345, 0, 345345, 0, ''),
-('5456', '456456', 'Staff', '45645', '234234', 6456456, '2018-01-02', 456456, 0, 46456, 0, ''),
-('678678', '345345', 'Staff', '345345', '345345', 345345, '2018-01-02', 345345345, 0, 345345, 0, ''),
-('h4534', '34534', 'Staff', '345345', '345345', 345345, '2018-01-02', 345345, 0, 345345, 0, ''),
-('LD45345', '34534', 'Staff', '345345', '345345', 345345, '2018-01-02', 345345, 0, 345345, 0, ''),
-('MN43', '24234', 'Leader', '234234', '234234', 23423, '2018-01-02', 234234, 0, 234234, 0, ''),
 ('NV01', 'Le Ngoc Huy', 'Staff', 'lehuy.paul@gmail.com', '7 street, Hiep Binh Chanh Wards, Thu Duc District', 985752395, '2018-01-01', 11111111, 0, 8000000, 0, ''),
-('NV02', 'Nguyen Van B', 'Staff', 'nguyenvanb@gmail.com', '77 Binh Thanh, HCM', 98565329, '2018-01-02T00:00:00.000Z', 348953495, 0, 900000, 0, ''),
-('NV03', 'Nguyen Van C', 'Staff', 'nguyenvanb@gmail.com', '77 Binh Thanh, hcm', 98565329, '2018-01-02T00:00:00.000Z', 348953495, 0, 900000, 0, ''),
-('NV04', 'Nguyen Van D', 'Staff', 'nguyend@gmail.com', '33 thu duc, hcm', 986764232, '2018-01-02T00:00:00.000Z', 2147483, 0, 9000000, 0, ''),
 ('NV05', 'NGUYEN VAN E', 'Leader', 'nguyee@gmail.com', '7 street, Hiep Binh Chanh Wards, Thu Duc District', 985752395, '2018-01-02', 2147483647, 0, 12000000, 0, ''),
 ('NV09', 'NGUYEN VAN H', 'Staff', 'nguyenh@gmail.com', '7 street, Hiep Binh Chanh Wards, Thu Duc District', 985752395, '2018-01-02', 2147483647, 0, 9000000, 0, ''),
 ('NV11', 'NGUYEN VAN K', 'Leader', 'NGUYENK@GMAIL.COM', '55 QUAN 10', 98432334, '2018-01-02', 234234234, 0, 120000000, 0, ''),
-('NV12', 'NGUYEN VAN E', 'Manager', 'nguyenvane@gmail.com', '77 quan 8, HCM', 986539345, '2018-01-02T00:00:00.000Z', 2147483647, 0, 9000000, 0, ''),
-('NV13', 'hÆ°eyrwrwer', 'Leader', '34535345efsdf', '234234', 234234234, '2018-01-02', 234235235, 0, 234234, 0, ''),
 ('NV44', '34345', 'Staff', '345345', '345345', 34534, '2018-01-02', 345345, 0, 345345, 0, ''),
-('NV87', 'nguyen van d', 'Staff', '34234', '234234', 234234, '2018-01-02', 234234, 0, 234234, 0, ''),
 ('NV90', 'HUY NGUYEN', 'Leader', 'nguyen@gmail.com', '234234', 3534534, '2018-01-03', 4234234, 0, 23423423, 0, ''),
-('NV90234', '234234', 'Staff', '23423', '4234', 423423, '2018-01-02', 234234234, 0, 23423423, 0, '');
+('NV90234', '234234', 'Staff', '23423', '4234', 423423, '2018-01-02', 234234234, 0, 23423423, 0, ''),
+('NV903', 'LE HUY', 'Staff', '324234', '24234', 94234, '2018-01-03', 234234, 0, 234234, 0, '');
 
 -- --------------------------------------------------------
 
@@ -98,7 +80,7 @@ CREATE TABLE `history` (
   `HistoryId` int(10) NOT NULL,
   `EmployeeID` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `Name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `Status` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
+  `Status` int(1) NOT NULL,
   `Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='history is where save history of going in and out the office';
 
@@ -117,7 +99,81 @@ CREATE TABLE `message` (
 --
 
 INSERT INTO `message` (`message`) VALUES
-('');
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(''),
+(' '),
+(' '),
+('\0NV02,24012013 '),
+(' '),
+('\0NV05,24012013 '),
+('	\0NV15,24012013\n\n '),
+(' '),
+('	\0NV45,24012013\n\n '),
+(' '),
+(' '),
+(' '),
+(' '),
+(' '),
+(' '),
+('\0NV745,24012013 '),
+(' '),
+('History.\0NV795,24012013 '),
+(' '),
+(' '),
+(' '),
+(' '),
+(' '),
+('History.\0NV795,24012013 '),
+('History.\0NV795,24012018 '),
+('History.\0NV795,24012016 '),
+('History.\0NV795,24012016 '),
+('History.\0NV795,24012016 '),
+(' '),
+('History.\0NV795,24012016 '),
+('<br />\n<b>Warning</b>:  stream_socket_client(): php_network_getaddresses: getaddrinfo failed: No suc');
 
 -- --------------------------------------------------------
 
@@ -131,8 +187,17 @@ CREATE TABLE `salary` (
   `EmployeeID` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `Salary` int(20) NOT NULL,
   `Bonus` int(20) NOT NULL,
-  `Position` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+  `Position` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Month` int(2) NOT NULL,
+  `Year` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `salary`
+--
+
+INSERT INTO `salary` (`ID`, `Name`, `EmployeeID`, `Salary`, `Bonus`, `Position`, `Month`, `Year`) VALUES
+(1, 'LE NGOC HUY', 'NV01', 10000000, 100000, 'Leader', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -203,7 +268,7 @@ ALTER TABLE `calendar`
 -- AUTO_INCREMENT for table `salary`
 --
 ALTER TABLE `salary`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
