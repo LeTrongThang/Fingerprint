@@ -47,7 +47,22 @@ $scope.ShowEmployee = function(EmployeeID){
         }
     });
 }
-
+$scope.PaySalary = function(){
+    var DatetimeNow = new Date();
+    var Month = DatetimeNow.getMonth();
+    var Year = DatetimeNow.getFullYear();
+    var res = $http.post(
+        './site/api/EmployeeApi/PaySalary.php', {'Month': Month,'Year': Year}
+      ).then(function(data){
+          console.log(data.data);
+        // if(parseInt(data.data) == 1)  // if create succesfful
+        // {
+        //     swal("Pay Salary per month Info Successfull. Sending to Fingerprint System!");
+        // } else {
+        //     swal("Error. Please try again or contacting admin!");
+        // }
+     });
+}
 $scope.Search = function(){
     var res = $http.post(
         './site/api/EmployeeApi/Search.php', {'Name': $scope.SearchModel.Name,
@@ -165,7 +180,7 @@ $scope.Create = function(){
 $scope.Change = function () {
         if ($scope.form.$invalid && $scope.newEmployeeModel.Position == 'All') 
             return true;
-}
+}   
 
 $scope.Close = function(){
     $uibModalInstance.close('save');
