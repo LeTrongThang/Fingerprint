@@ -21,7 +21,7 @@ $querySave = "INSERT INTO history(EmployeeID, Name, Status, Date )
 
 // query for inserting 
 
-if(mysqli_query($conn, $query)){
+if(mysqli_query($conn, $querySave)){
     $data = 1;
     $json = json_encode($data);
     echo $json;

@@ -1,50 +1,46 @@
-app.controller('SalaryController',['$scope','$http', 
-function ($scope, $http) {
-  $scope.init = function(){
-  $scope.currentTime = new Date();
-  $scope.currentYear = $scope.currentTime.getFullYear();
-  $scope.currentMonth = $scope.currentTime.getMonth();
-      $scope.SearchModel = {
-          Month: $scope.currentMonth + 1,
-          Year: $scope.currentYear,
-          Name: ''
-      };
-      $scope.years = $scope.createYearArray();
+app.controller('SalaryController', ['$scope', '$http',
+    function ($scope, $http) {
+        
+        $scope.init = function () {
+            console.log("Start SalaryController");
+            $scope.SearchModel = {
+                Month:  new Date().getMonth() + 1,
+                Year: new Date().getFullYear(),
+                Name: '',
+                EmployeeID:''
+            }
+            $scope.getAllSalary();
+        }
 
-      $scope.getAllSalary();
-  }
-  $scope.config = {
-      headers:{
-          'Accept': 'application/json',
-          'requestType':'angularJS',
-          'Cache-Control': 'no-cach, no-store, must-revalidate',
-          'Pragame':'no-catch',
-          'Expries': 0,
-          action: 's',
-         },
-  };
-  $scope.createYearArray =  function (){
-      var year;
-      var firstYear = 2010;
-      var temp = true;
-      $scope.yearArray = new Array();
-      if ($scope.yearArray.length == 0) {
-          while (firstYear <= $scope.currentYear) {
-              year = $scope.yearArray.push(firstYear);
-              firstYear++;
-          }
-      }
-      return $scope.yearArray;
-  }
-  var url = './site/api/SalaryApi/GetAllSalary.php';
-  $scope.getAllSalary = function() {
-      $http.get(url, $scope.config)
-      .then(function(data){
-          $scope.Salarys = data.data;
-      });
-  };
-  $scope.Search = function(){
-
-  }
-  $scope.init();
-}]);
+        var config = {
+            headers: {
+                'Accept': 'application/json',
+                'requestType': 'angularJS',
+                'Cache-Control': 'no-cach, no-store, must-revalidate',
+                'Pragame': 'no-catch',
+                'Expries': 0,
+                action: 's',
+            },
+        };
+        
+        var url = './site/api/SalaryApi/GetAllSalary.php';
+        $scope.getAllSalary = function () {
+            $http.get(url, config)
+                .then(function (data) {
+                    $scope.Salarys = data.data;
+                });
+        };
+        $scope.Search = function () {
+            var res = $http.post(
+                './site/api/SalaryApi/Search.php', {
+                    'Month': $scope.SearchModel.Month,
+                    'Year': $scope.SearchModel.Year,
+                    'EmployeeID': $scope.SearchModel.EmployeeID,
+                    'Name': $scope.SearchModel.Name
+                }
+            ).then(function (data) {
+                $scope.Salarys = data.data;
+            });
+        }
+        $scope.init();
+    }]);
