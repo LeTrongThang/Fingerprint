@@ -1,30 +1,30 @@
 <div>
     <div class="col-sm-12">
-    <div class="panel panel-default">
+        <div class="panel panel-default">
             <div class="panel-heading">Search by condition</div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
                             <label class="control-label col-sm-3">Name</label>
                             <div class="col-sm-9">
-                                <input class="form-control" type="text" ng-model="SearchModel.Name" placeholder="Name">    
+                                <input class="form-control" type="text" ng-model="SearchModel.Name" placeholder="Name">
                             </div>
-                            </div>
-                            <div class="form-group">
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-sm-3">Employee ID</label>
                             <div class="col-sm-9">
-                                <input class="form-control" type="text" ng-model="SearchModel.EmployeeID" placeholder="Employee ID">    
+                                <input class="form-control" type="text" ng-model="SearchModel.EmployeeID" placeholder="Employee ID">
                             </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <md-datepicker ng-model="SearchModel.FromDate" md-placeholder="From Date"></md-datepicker>
-                            <md-datepicker ng-model="SearchModel.ToDate" md-placeholder="To Date"></md-datepicker>
-                            <button style="text-align:right" type="button" class="btn btn-primary" ng-click="Search()">Search</button>
                         </div>
                     </div>
+                    <div class="col-sm-6">
+                        <md-datepicker ng-model="SearchModel.FromDate" md-placeholder="From Date"></md-datepicker>
+                        <md-datepicker ng-model="SearchModel.ToDate" md-placeholder="To Date"></md-datepicker>
+                        <button style="text-align:right" type="button" class="btn btn-primary" ng-click="Search()">Search</button>
+                    </div>
                 </div>
+            </div>
         </div>
     </div>
     <div class="col-sm-12">
@@ -56,7 +56,7 @@
                                 Không tìm thấy kết quả phù hợp
                             </td>
                         </tr>
-                 </tbody>
+                    </tbody>
                 </table>
             </div>
         </div>

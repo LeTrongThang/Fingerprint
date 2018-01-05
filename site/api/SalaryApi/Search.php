@@ -14,8 +14,13 @@ function IsNullOrEmptyString($question){
         return (!isset($question) || trim($question)==='');
 }
 
-$query = "SELECT * FROM salary WHERE Month='$Month' AND Year='$Year'";
-
+$query = "SELECT * FROM salary WHERE 1=1";
+if ($Year != -1){
+        $query = $query . "AND Year = '$Year'";
+}
+if ($Month != -1){
+        $query = $query . "AND Month = '$Month'";
+}
 if (!IsNullOrEmptyString($EmployeeID)){
         $query = $query . "AND EmployeeID = '$EmployeeID'";
 }

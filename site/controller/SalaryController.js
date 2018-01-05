@@ -3,9 +3,11 @@ app.controller('SalaryController', ['$scope', '$http',
         
         $scope.init = function () {
             console.log("Start SalaryController");
+            var Month = new Date().getMonth() + 1;
+            var Year = new Date().getFullYear();
             $scope.SearchModel = {
-                Month:  new Date().getMonth() + 1,
-                Year: new Date().getFullYear(),
+                Month:  '-1',
+                Year: '-1',
                 Name: '',
                 EmployeeID:''
             }
@@ -29,7 +31,8 @@ app.controller('SalaryController', ['$scope', '$http',
                 .then(function (data) {
                     $scope.Salarys = data.data;
                 });
-        };
+        }
+
         $scope.Search = function () {
             var res = $http.post(
                 './site/api/SalaryApi/Search.php', {
