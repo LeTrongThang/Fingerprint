@@ -17,12 +17,20 @@ app.controller('HistoryController',['$scope', '$http', '$timeout', '$interval', 
               console.log("Subscribing...");
               $scope.HistoryInfo = data.data;
               console.log(data.data);
-              if(data.data == null || data.data == '') { // check if data empty
-                 
+              if(data.data == null || data.data == " ") { // check if data empty
+                 return '';
               } else {
               // Processing string to save to  DB
+                var stringhistory = data.data;
+                //stringhistory = stringhistory.slice(1);
+                console.log(stringhistory);
+                var EmployeeID = stringhistory.substring(0,4);
+                var Status = stringhistory.substring(stringhistory.length -1 ,stringhistory.length);
+                var DateHistory = stringhistory.substring(5,stringhistory.length - 2);
               var res = $http.post(
-                  './site/api/HistoryApi/Message.php',{'Message': data.data
+                  './site/api/HistoryApi/SaveHistory.php',{'EmployeeID': EmployeeID,
+                                                           'Status': Status,
+                                                           'Date': DateHistory
                                               }
             ).then(function(data){});
           }}

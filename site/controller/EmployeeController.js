@@ -49,18 +49,17 @@ app.controller('EmployeeController', ['$scope', '$uibModal', '$http',
         }
         $scope.PaySalary = function () {
             var DatetimeNow = new Date();
-            var Month = DatetimeNow.getMonth();
+            var Month = DatetimeNow.getMonth() + 1;
             var Year = DatetimeNow.getFullYear();
             var res = $http.post(
                 './site/api/EmployeeApi/PaySalary.php', { 'Month': Month, 'Year': Year }
             ).then(function (data) {
-                console.log(data.data);
-                // if(parseInt(data.data) == 1)  // if create succesfful
-                // {
-                //     swal("Pay Salary per month Info Successfull. Sending to Fingerprint System!");
-                // } else {
-                //     swal("Error. Please try again or contacting admin!");
-                // }
+                if(parseInt(data.data) == 1)
+                {
+                    swal("Pay Salary per month Info Successfull");
+                } else {
+                    swal("Error. Please try again or contacting admin!");
+                }
             });
         }
         $scope.Search = function () {
@@ -241,7 +240,7 @@ app.controller('UpdateEmployeeController', ['$scope', '$uibModalInstance', 'Empl
                     'PhoneNumber': $scope.newEmployeeModel.PhoneNumber,
                     'Address': $scope.newEmployeeModel.Address,
                     'Salary': $scope.newEmployeeModel.Salary,
-                    //'Bonus':$scope.newEmployeeModel.Bonus,
+                    'Bonus':$scope.newEmployeeModel.Bonus,
                     'StartingDate': $scope.newEmployeeModel.StartingDate,
                     'InsuranceID': $scope.newEmployeeModel.InsuranceID,
                     'EmployeeID': $scope.newEmployeeModel.EmployeeID,

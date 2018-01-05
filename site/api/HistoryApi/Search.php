@@ -15,11 +15,11 @@ function IsNullOrEmptyString($question){
 $query = "SELECT * FROM history WHERE Date BETWEEN '$FromDate' AND '$ToDate'";
 
 if (!IsNullOrEmptyString($EmployeeID)){
-        $query = $query . "AND EmployeeID = '$EmployeeID'";
+        $query = $query . " AND EmployeeID = '$EmployeeID'";
 }
 
 if (!IsNullOrEmptyString($Name)) {
-        $query = $query . "AND Name = '$Name'";
+        $query = $query . " AND Name = '$Name'";
 }
  
 $data = array();

@@ -55,6 +55,12 @@
                         <input class="form-control Employee-input" type="text" ng-model="newEmployeeModel.Salary" placeholder="Salary" required>
                     </div>
                 </div>
+                <div class="form-group" ng-if="IsEdit">
+                        <label class="col-sm-3 control-label">Bonus</label>
+                        <div class=" col-sm-9">
+                            <input class="form-control Employee-input" type="text" ng-model="newEmployeeModel.Bonus" placeholder="Bonus" required>
+                        </div>
+                </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">InsuranceID</label>
                     <div class="col-sm-9">
@@ -71,7 +77,6 @@
                 </div>
             </div>
             <div class="col-sm-2"></div>
-
     </form>
     </div>
     <div class="modal-footer">

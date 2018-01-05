@@ -6,29 +6,20 @@ if(!$conn) {
 $input = json_decode(file_get_contents("php://input"));
 
 // get parameter from angularjs
-$Name = mysqli_real_escape_string($conn, $input->Name);
 $Status = mysqli_real_escape_string($conn, $input->Status);
 $EmployeeID = mysqli_real_escape_string($conn, $input->EmployeeID);
+$Date = mysqli_real_escape_string($conn, $input->Date);
 
+// get Employee from employeetable
 $querySelect = "SELECT *from employee WHERE EmployeeID = '$EmployeeID'";
-if(mysqli_query($conn, $query)) {
-    $Employee =  array("EmployeeID"=>$row['EmployeeID'],"Name"=>$row['Name'],"Position"=>$row['Position']);
-}
-var_dump($Employee);
-die();
-$querySave = "INSERT INTO history(EmployeeID, Name, Status, Date )
-          VALUES ('$EmployeeID', '$Name','$Position','$Email')";
-
-// query for inserting 
-
-if(mysqli_query($conn, $querySave)){
-    $data = 1;
-    $json = json_encode($data);
-    echo $json;
-}
-    else {
-    $data = 0;
-    $json = json_encode($data);
-    echo $json;
+$result = $conn->query($querySelect);
+if(mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)){
+        $Name = $row["Name"];
+        // Save into history
+         $querySave = "INSERT INTO history(Name, EmployeeID, Status, Date)
+                       VALUES ('$Name','$EmployeeID', '$Date')";
+        $conn->query($querySave);
+     }
 }
 ?>

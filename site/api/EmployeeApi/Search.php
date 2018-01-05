@@ -13,9 +13,7 @@ $PhoneNumber = mysqli_real_escape_string($conn, $input->PhoneNumber);
 function IsNullOrEmptyString($question){
         return (!isset($question) || trim($question)==='');
 }
-
 $query = "SELECT * FROM employee WHERE 1=1 ";
-
 if (!IsNullOrEmptyString($EmployeeID)){
         $query = $query . "AND EmployeeID = '$EmployeeID'";
 }

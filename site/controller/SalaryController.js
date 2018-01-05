@@ -3,8 +3,8 @@ app.controller('SalaryController', ['$scope', '$http',
         
         $scope.init = function () {
             console.log("Start SalaryController");
-            var Month = new Date().getMonth() + 1;
-            var Year = new Date().getFullYear();
+            $scope.Month = new Date().getMonth() + 1;
+            $scope.Year = new Date().getFullYear();
             $scope.SearchModel = {
                 Month:  '-1',
                 Year: '-1',

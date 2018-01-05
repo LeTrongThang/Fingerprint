@@ -13,7 +13,7 @@ if(!$mqtt->connect(true, NULL, $username, $password)) {
 	exit(1);
 }
 
-$topics['scan'] = array("qos" => 2, "function" => "procmsg");
+$topics['fingerprint/scan'] = array("qos" => 2, "function" => "procmsg");
 $mqtt->subscribe($topics, 2);
 // var_dump($mqtt->connect(true, NULL, $username, $password));	
 // die();
@@ -30,9 +30,7 @@ function procmsg($topic,$msg) {
 	 global $done;
 	 $done = 1; 
 	//json_decode($msg);
-	$HistoryString = "History".".".$msg;
-	echo $HistoryString;
-	//echo $msg;
+	echo $msg;
  } 
 function hasTimedout() {
  global $start_time;

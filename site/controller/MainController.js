@@ -25,6 +25,10 @@ app.config(function ($routeProvider) {
             templateUrl: "site/view/history.html",
             controller: "HistoryController"
         })
+        .when("/calendar", {
+            templateUrl: "site/view/calendar.html",
+            controller: "CalendarController"
+        })
         .otherwise({
             redirectTo: "/"
         });

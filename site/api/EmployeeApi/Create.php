@@ -19,7 +19,6 @@ $query = "INSERT INTO employee(EmployeeID, Name, Position, Email, Address, Phone
           VALUES ('$EmployeeID', '$Name','$Position','$Email','$Address','$PhoneNumber','$StartingDate','$InsuranceID','$Salary','$Bonus')";
 
 // query for inserting 
-
 if(mysqli_query($conn, $query)){
     $data = 1;
     $json = json_encode($data);

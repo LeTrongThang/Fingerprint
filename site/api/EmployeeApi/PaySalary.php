@@ -5,32 +5,28 @@ $input = json_decode(file_get_contents("php://input"));
 $Month = mysqli_real_escape_string($conn, $input->Month);
 $Year = mysqli_real_escape_string($conn, $input->Year);
 
-
 $query = "SELECT * FROM employee";
 $result = $conn->query($query);
-// while ($row = mysqli_fetch_assoc($result)){
-//    var_dump($row);
-// }
-// while ($row = mysqli_fetch_array($sel)) {
-//  $data[] =  array("EmployeeID"=>$row['EmployeeID'],"Name"=>$row['Name'],"Position"=>$row['Position'], "Email"=>$row['Email'],
-//  "PhoneNumber"=>$row['PhoneNumber'],
-//  "StartingDate"=>$row['StartingDate'],
-//  "InsuranceID"=>$row['InsuranceID'],
-//  "Salary"=>$row['Salary'],
-//  "Address"=>$row['Address'],
-//  "Bonus"=>$row['Bonus'],
-// );
-// }
-foreach(mysqli_fetch_assoc($result) as $employee){
-   // save a employee into salary
-   var_dump($employee);
-    die();
-    //  $querySave = "INSERT INTO employee(EmployeeID, Name, Position, , Salary, Bonus, Month, Year)
-    //  VALUES ('$EmployeeID', '$EmployeeID.Name','$Salary','$Bonus', '$Month', '$Year')";
+if(mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)){
+        $EmployeeID = $row["EmployeeID"];
+        $Name = $row["Name"];
+        $Salary = $row["Salary"];
+        $Bonus = $row["Bonus"];
+        $Position = $row["Position"];
+       
+        // Save salary of all employees into salaty
+         $querySave = "INSERT INTO salary(Name, EmployeeID, Salary, Bonus, Position, Month, Year)
+                       VALUES ('$Name','$EmployeeID','$Salary','$Bonus','$Position', '$Month', '$Year')";
+        $conn->query($querySave);
+     }
+     $data = 1;
+     $json = json_encode($data);    
+     echo $json;
 }
-
-// Save salary of all employees into salaty
-
-// $json = json_encode($data);
-// echo $json;
+else {
+    $data = 0;
+    $json = json_encode($data);
+    echo $json;
+}
 ?>

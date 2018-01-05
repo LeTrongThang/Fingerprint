@@ -1,32 +1,30 @@
 <?php
-// Search Employee
+// Search Salary
 require "../../../admin/database/database.php";
 
 $input = json_decode(file_get_contents("php://input"));
 
 // get parameter from angularjs
-$Year = mysqli_real_escape_string($conn, $input->Year);
-$EmployeeID = mysqli_real_escape_string($conn, $input->EmployeeID);
-$Month = mysqli_real_escape_string($conn, $input->Month);
+$Year = intval(mysqli_real_escape_string($conn, $input->Year));
+$Month = intval(mysqli_real_escape_string($conn, $input->Month));
 $Name = mysqli_real_escape_string($conn, $input->Name);
-
+$EmployeeID = mysqli_real_escape_string($conn, $input->EmployeeID);
 function IsNullOrEmptyString($question){
         return (!isset($question) || trim($question)==='');
 }
-
 $query = "SELECT * FROM salary WHERE 1=1";
 if ($Year != -1){
-        $query = $query . "AND Year = '$Year'";
+        $query = $query . " AND Year = '$Year'";
 }
 if ($Month != -1){
-        $query = $query . "AND Month = '$Month'";
+        $query = $query . " AND Month = '$Month'";
 }
 if (!IsNullOrEmptyString($EmployeeID)){
-        $query = $query . "AND EmployeeID = '$EmployeeID'";
+        $query = $query . " AND EmployeeID = '$EmployeeID'";
 }
 
 if (!IsNullOrEmptyString($Name)) {
-        $query = $query . "AND Name = '$Name'";
+        $query = $query . " AND Name = '$Name'";
 }
 $data = array();
 

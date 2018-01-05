@@ -17,7 +17,7 @@ if(mysqli_query($conn, $querySalary)){}
 // query for deleteing 
 
 if(mysqli_query($conn, $query)){
-    $data = 1;
+    $data = 1;  
     $json = json_encode($data);
     echo $json;
 }
