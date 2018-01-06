@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=utf-8');
 require "../../../admin/database/database.php";
 require("phpMQTT.php");
 
@@ -30,7 +31,11 @@ function procmsg($topic,$msg) {
 	 global $done;
 	 $done = 1; 
 	//json_decode($msg);
-	echo $msg;
+	// echo "Msg Recieved: $msg";
+	// var_dump("Msg Recieved: $msg");
+	echo "Msg Recieved: " . date("r") . "\n";
+	echo "Topic: {$topic}\n\n";
+	echo "\t$msg\n\n";
  } 
 function hasTimedout() {
  global $start_time;
