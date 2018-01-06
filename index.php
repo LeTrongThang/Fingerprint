@@ -117,11 +117,15 @@ include('./site/api/session.php');
      <!-- Moment -->
     <script type="text/javascript" src="node_modules/moment/min/moment.min.js"></script>
     <!-- SweetAlert -->
-    <!-- <script type="text/javascript" src="node_modules/sweetalert/dist/sweetalert.min.js"></script> -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-     <!-- ngsweetalert -->
-    <!-- <script type="text/javascript" src="node_modules/ngsweetalert/ngSweetAlert.js"></script> -->
+    <script type="text/javascript" src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+     
     <!-- Controller -->
     <script type="text/javascript" src = "site/controller/MainController.js"></script>
+    <script type="text/javascript" src = "site/controller/Fingerprint.js"></script>
+    <script type="text/javascript" src = "site/controller/SalaryController.js"></script>
+    <script type="text/javascript" src = "site/controller/EmployeeController.js"></script>
+    <script type="text/javascript" src = "site/controller/HistoryController.js"></script>
+    <script type="text/javascript" src = "site/controller/CalendarController.js"></script>
 </body>
 </html>

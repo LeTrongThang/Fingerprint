@@ -11,7 +11,7 @@ $Email = mysqli_real_escape_string($conn, $input->Email);
 $PhoneNumber = mysqli_real_escape_string($conn, $input->PhoneNumber);
 $Address = mysqli_real_escape_string($conn, $input->Address);
 $Salary = mysqli_real_escape_string($conn, $input->Salary);
-//$Bonus = mysqli_real_escape_string($conn, $input->Bonus);
+$Bonus = mysqli_real_escape_string($conn, $input->Bonus);
 $StartingDate = mysqli_real_escape_string($conn, $input->StartingDate);
 $InsuranceID = mysqli_real_escape_string($conn, $input->InsuranceID);
 
@@ -22,6 +22,7 @@ $query = "UPDATE employee SET   Name = '".$Name."',
                                 Address = '".$Address."',
                                 Salary = '".$Salary."',
                                 StartingDate = '".$StartingDate."',
+                                Bonus = '".$Bonus."',
                                 InsuranceID = '".$InsuranceID."'
         WHERE EmployeeID ='$EmployeeID'";
 

@@ -1,26 +1,27 @@
 <div>
   <div class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-        <form action="/" id="myLogin">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Login</h5>
+      <form action="/" id="myLogin">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Login</h5>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">User name</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username"
+                ng-model="User.Username">
             </div>
-            <div class="modal-body">
-              <div class="form-group">
-                  <label for="exampleInputEmail1">User name</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username" ng-model="User.Username">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="User.Password">
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" ng-click="Login()">Submit</button>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="User.Password">
             </div>
           </div>
-        </form>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" ng-click="Login()">Submit</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
