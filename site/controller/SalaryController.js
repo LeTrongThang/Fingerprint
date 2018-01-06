@@ -29,7 +29,11 @@ app.controller('SalaryController', ['$scope', '$http',
         $scope.getAllSalary = function () {
             $http.get(url, config)
                 .then(function (data) {
-                    $scope.Salarys = data.data;
+                	if (data.data.isLogin == 'false') {
+                		window.location = './login.php';
+                	} else {
+                		$scope.Salarys = data.data;
+                	}
                 });
         }
 
@@ -42,7 +46,11 @@ app.controller('SalaryController', ['$scope', '$http',
                     'Name': $scope.SearchModel.Name
                 }
             ).then(function (data) {
-                $scope.Salarys = data.data;
+            	if (data.data.isLogin == 'false') {
+            		window.location = './login.php';
+            	} else {
+            		$scope.Salarys = data.data;
+            	}
             });
         }
         $scope.init();

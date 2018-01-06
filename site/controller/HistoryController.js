@@ -14,27 +14,37 @@ app.controller('HistoryController',['$scope', '$http', '$timeout', '$interval', 
       $scope.HistorySubscribe = function() {
           $http.get(urlSubscribe, configSubscribe)
           .then(function(data){
-              console.log("Subscribing...");
-              $scope.HistoryInfo = data.data;
-              console.log(data.data);
-              if(data.data == null || data.data == " ") { // check if data empty
-                 return '';
-              } else {
-              // Processing string to save to  DB
-                var stringhistory = data.data;
-                //stringhistory = stringhistory.slice(1);
-                console.log(stringhistory);
-                var EmployeeID = stringhistory.substring(0,4);
-                var Status = stringhistory.substring(stringhistory.length -1 ,stringhistory.length);
-                var DateHistory = stringhistory.substring(5,stringhistory.length - 2);
-              var res = $http.post(
-                  './site/api/HistoryApi/SaveHistory.php',{'EmployeeID': EmployeeID,
-                                                           'Status': Status,
-                                                           'Date': DateHistory
-                                              }
-            ).then(function(data){});
-          }}
-      );
+        	  if (data.data.isLogin == 'false') {
+          		  window.location = './login.php';
+          	  } else {
+	              console.log("Subscribing...");
+	              $scope.HistoryInfo = data.data;
+	              console.log(data.data);
+	              if(data.data == null || data.data == " ") { // check if data empty
+	                 return '';
+	              } else {
+	            	  // Processing string to save to  DB
+	            	  var stringhistory = data.data;
+	            	  //stringhistory = stringhistory.slice(1);
+	            	  console.log(stringhistory);
+	            	  var EmployeeID = stringhistory.substring(0,4);
+	            	  var Status = stringhistory.substring(stringhistory.length -1 ,stringhistory.length);
+	            	  var DateHistory = stringhistory.substring(5,stringhistory.length - 2);
+	            	  var res = $http.post('./site/api/HistoryApi/SaveHistory.php', 
+	    			  {
+	    		  		'EmployeeID': EmployeeID, 
+	    		  		'Status': Status, 
+	    		  		'Date': DateHistory
+	                  }).then(function(data){
+			            	if (data.data.isLogin == 'false') {
+			            		window.location = './login.php';
+			            	} else {
+			            		
+			            	}
+	                  });
+	              }
+          	  }
+         });
       };
       
       // $interval(function () {
@@ -81,7 +91,11 @@ app.controller('HistoryController',['$scope', '$http', '$timeout', '$interval', 
                                                   'FromDate':$scope.SearchModel.FromDate,
                                                   'ToDate':$scope.SearchModel.ToDate} 
            ).then(function(data){
-              $scope.historys = data.data;
+        	   if (data.data.isLogin == 'false') {
+           			window.location = './login.php';
+           	   } else {
+           		   $scope.historys = data.data;
+           	   }
           });
       };
       //$scope.Get();
