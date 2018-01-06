@@ -1,5 +1,6 @@
 <?php
 require "../../../admin/database/database.php";
+include('./../CheckSessionRedirectClient.php');
 
 $query = "SELECT * FROM history";
 $sel = mysqli_query($conn,$query);

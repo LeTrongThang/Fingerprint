@@ -1,5 +1,6 @@
 <?php
 require "../../../admin/database/database.php";
+include('./../CheckSessionRedirectClient.php');
 require("phpMQTT.php");
 
 $server = "m14.cloudmqtt.com";

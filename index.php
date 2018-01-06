@@ -4,7 +4,7 @@
 define('PATH_SYSTEM', __DIR__ .'/system');
 define('PATH_APPLICATION', __DIR__ . '/site');
 require "./admin/database/database.php";
-include('./site/api/session.php');
+include('./site/api/CheckSessionRedirectServer.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,6 +77,13 @@ include('./site/api/session.php');
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <a href="./site/api/Logout.php">
+                                		<b>
+                                			<?php 
+                                			     if (isset($_SESSION['login_user'])) {
+                                		              echo $_SESSION['login_user'];
+                                		         }
+                                		    ?>
+                                		</b>
                                         <span class="scope">
                                             <i class="glyphicon glyphicon-log-in"></i>
                                             <span class="title-function hidden-sm hidden-xs">LOGOUT</span>

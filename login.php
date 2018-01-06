@@ -1,10 +1,7 @@
 <?php
 define('PATH_SYSTEM', __DIR__ .'/system');
 define('PATH_APPLICATION', __DIR__ . '/site');
-include('./site/api/CommonCheckSession.php');
-if(isset($_SESSION['login_user'])){
-    header('Location: ./index.php');
-}
+include('./site/api/CheckLogin.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

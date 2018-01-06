@@ -1,5 +1,7 @@
 <?php
 require "../../../admin/database/database.php";
+include('./../CheckSessionRedirectClient.php');
+
 if(!$conn) {
     echo "Kết nối tới database thất bại";
 }

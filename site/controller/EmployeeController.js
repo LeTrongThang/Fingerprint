@@ -26,7 +26,11 @@ app.controller('EmployeeController', ['$scope', '$uibModal', '$http',
         $scope.getAllEmployee = function () {
             $http.get(url, config)
                 .then(function (data) {
-                    $scope.employees = data.data;
+                	if (data.data.isLogin == 'false') {
+                		window.location = './login.php';
+                	} else {
+                		$scope.employees = data.data;
+                	}
                 });
         };
 
@@ -54,12 +58,16 @@ app.controller('EmployeeController', ['$scope', '$uibModal', '$http',
             var res = $http.post(
                 './site/api/EmployeeApi/PaySalary.php', { 'Month': Month, 'Year': Year }
             ).then(function (data) {
-                if(parseInt(data.data) == 1)
-                {
-                    swal("Pay Salary per month Info Successfull");
-                } else {
-                    swal("Error. Please try again or contacting admin!");
-                }
+            	if (data.data.isLogin == 'false') {
+            		window.location = './login.php';
+            	} else {
+	                if(parseInt(data.data) == 1)
+	                {
+	                    swal("Pay Salary per month Info Successfull");
+	                } else {
+	                    swal("Error. Please try again or contacting admin!");
+	                }
+            	}
             });
         }
         $scope.Search = function () {
@@ -71,7 +79,11 @@ app.controller('EmployeeController', ['$scope', '$uibModal', '$http',
                     'Email': $scope.SearchModel.Email
                 }
             ).then(function (data) {
-                $scope.employees = data.data;
+            	if (data.data.isLogin == 'false') {
+            		window.location = './login.php';
+            	} else {
+            		$scope.employees = data.data;
+            	}
             });
         }
         $scope.Close = function () {
@@ -91,18 +103,27 @@ app.controller('EmployeeController', ['$scope', '$uibModal', '$http',
                         var res = $http.post(
                             './site/api/EmployeeApi/Delete.php', { 'EmployeeID': EmployeeID }
                         ).then(function (data) {
-                            if (parseInt(data.data) == 1) {
-                                swal("Delete Employee Info Successfull!");
-                                // publish to broker
-                                var res = $http.post(
-                                    './site/api/mqtt/PublishDeleteEmployee.php', { 'EmployeeID': EmployeeID }
-                                ).then(function (data) {
-                                });
-                                $scope.getAllEmployee();
-                            }
-                            else {
-                                swal("Delete Employee Info fail. Please do again or contacting maanger!");
-                            }
+                        	if (data.data.isLogin == 'false') {
+                        		window.location = './login.php';
+                        	} else {
+	                            if (parseInt(data.data) == 1) {
+	                                swal("Delete Employee Info Successfull!");
+	                                // publish to broker
+	                                var res = $http.post(
+	                                    './site/api/mqtt/PublishDeleteEmployee.php', { 'EmployeeID': EmployeeID }
+	                                ).then(function (data) {
+	                                	if (data.data.isLogin == 'false') {
+	                                		window.location = './login.php';
+	                                	} else {
+	                                		
+	                                	}
+	                                });
+	                                $scope.getAllEmployee();
+	                            }
+	                            else {
+	                                swal("Delete Employee Info fail. Please do again or contacting maanger!");
+	                            }
+                        	}
                         });
                     } else {
                         $scope.getAllEmployee();
@@ -149,35 +170,44 @@ app.controller('CreateEmployeeController', ['$scope', 'parent', '$uibModalInstan
                 'EmployeeID': $scope.newEmployeeModel.EmployeeID,
             }
         ).then(function (data) {
-            if (parseInt(data.data) == 1)  // if create succesfful
-            {
-                $scope.Close();
-                swal("Create Employee Info Successfull. Sending to Fingerprint System!");
-                parent.getAllEmployee();
-                // Send to NodeMCU
-                var position;
-                switch ($scope.newEmployeeModel.Position) {
-                    case "Staff":
-                        position = 1;
-                        break;
-                    case "Leader":
-                        position = 2;
-                        break;
-                    case "Manager":
-                        position = 3;
-                        break;
-                }
-                var res = $http.post(
-                    './site/api/mqtt/PublishCreateEmployee.php', {
-                        'EmployeeID': $scope.newEmployeeModel.EmployeeID,
-                        'Name': $scope.newEmployeeModel.Name,
-                        'Position': position,
+        	if (data.data.isLogin == 'false') {
+        		window.location = './login.php';
+        	} else {
+        		if (parseInt(data.data) == 1)  // if create succesfful
+                {
+                    $scope.Close();
+                    swal("Create Employee Info Successfull. Sending to Fingerprint System!");
+                    parent.getAllEmployee();
+                    // Send to NodeMCU
+                    var position;
+                    switch ($scope.newEmployeeModel.Position) {
+                        case "Staff":
+                            position = 1;
+                            break;
+                        case "Leader":
+                            position = 2;
+                            break;
+                        case "Manager":
+                            position = 3;
+                            break;
                     }
-                ).then(function (data) {
-                });
-            } else {
-                swal("Create Employee Info fail. Please do again or contacting maanger!");
-            }
+                    var res = $http.post(
+                        './site/api/mqtt/PublishCreateEmployee.php', {
+                            'EmployeeID': $scope.newEmployeeModel.EmployeeID,
+                            'Name': $scope.newEmployeeModel.Name,
+                            'Position': position,
+                        }
+                    ).then(function (data) {
+                    	if (data.data.isLogin == 'false') {
+                    		window.location = './login.php';
+                    	} else {
+                    		
+                    	}
+                    });
+                } else {
+                    swal("Create Employee Info fail. Please do again or contacting maanger!");
+                }
+        	}
         });
     }
 
@@ -216,9 +246,13 @@ app.controller('UpdateEmployeeController', ['$scope', '$uibModalInstance', 'Empl
             var res = $http.post(
                 './site/api/EmployeeApi/Get.php', { 'EmployeeID': $scope.EmployeeID }
             ).then(function (data) {
-                $scope.newEmployeeModel = data.data;
-                $scope.newEmployeeModel.StartingDate = new Date($scope.newEmployeeModel.StartingDate);
-                $scope.EmployeeModel = angular.copy($scope.newEmployeeModel);
+            	if (data.data.isLogin == 'false') {
+            		window.location = './login.php';
+            	} else {
+	                $scope.newEmployeeModel = data.data;
+	                $scope.newEmployeeModel.StartingDate = new Date($scope.newEmployeeModel.StartingDate);
+	                $scope.EmployeeModel = angular.copy($scope.newEmployeeModel);
+            	}
             });
         }
         $scope.Change = function () {
@@ -246,15 +280,19 @@ app.controller('UpdateEmployeeController', ['$scope', '$uibModalInstance', 'Empl
                     'EmployeeID': $scope.newEmployeeModel.EmployeeID,
                 }
             ).then(function (data) {
-                if (parseInt(data.data) == 1) {
-                    $scope.Close();
-                    swal("Update Employee Info Successfull!");
-                    parent.getAllEmployee();
-                    // Notify update employee info successfully
-                }
-                else {
-                    swal("Update Employee Info fail. Please do again or contacting maanger!");
-                }
+            	if (data.data.isLogin == 'false') {
+            		window.location = './login.php';
+            	} else {
+	                if (parseInt(data.data) == 1) {
+	                    $scope.Close();
+	                    swal("Update Employee Info Successfull!");
+	                    parent.getAllEmployee();
+	                    // Notify update employee info successfully
+	                }
+	                else {
+	                    swal("Update Employee Info fail. Please do again or contacting maanger!");
+	                }
+            	}
             });
         };
 
