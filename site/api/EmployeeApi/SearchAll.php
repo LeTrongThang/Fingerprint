@@ -1,6 +1,6 @@
 <?php
 require "../../../admin/database/database.php";
-include('./../CheckSessionRedirectClient.php');
+//include('./../CheckSessionRedirectClient.php');
 $query = "SELECT * FROM employee";
 $sel = mysqli_query($conn,$query);
 $data = array();

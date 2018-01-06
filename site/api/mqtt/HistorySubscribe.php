@@ -14,10 +14,9 @@ if(!$mqtt->connect(true, NULL, $username, $password)) {
 	exit(1);
 }
 
-$topics['fingerprint/scan'] = array("qos" => 2, "function" => "procmsg");
-$mqtt->subscribe($topics, 2);
-// var_dump($mqtt->connect(true, NULL, $username, $password));	
-// die();
+$topics['fingerprint/scan'] = array("qos" => 0, "function" => "procmsg");
+$mqtt->subscribe($topics, 0);
+
 // while($mqtt->proc()){
 // }
 // $mqtt->close();
@@ -41,6 +40,5 @@ function hasTimedout() {
  global $start_time;
   return (time() - $start_time > 10);//waits up to 10 sec 
 } 
-
 ?>
  
