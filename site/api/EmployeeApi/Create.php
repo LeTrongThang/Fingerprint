@@ -1,6 +1,6 @@
 <?php
 require "../../../admin/database/database.php";
-include('./../CheckSessionRedirectClient.php');
+//include('./../CheckSessionRedirectClient.php');
 
 $input = json_decode(file_get_contents("php://input"));
 
