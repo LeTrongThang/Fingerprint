@@ -47,7 +47,7 @@
                             <td ng-bind="history.EmployeeID"></td>
                             <td ng-bind="history.Name"></td>
                             <td ng-bind="history.Status == 1? 'Go on' : 'Go out'"></td>
-                            <td ng-bind="history.Date"></td>
+                            <td ng-bind="history.Date | date:'yyyy-MM-dd HH-mm-ss'"></td>
                         </tr>
                     </tbody>
                     <tbody ng-if="historys.length == 0" class="text-center">

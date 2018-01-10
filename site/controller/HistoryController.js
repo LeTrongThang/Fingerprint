@@ -9,7 +9,8 @@ app.controller('HistoryController', ['$scope', '$http', '$timeout', '$interval',
             Name: '',
             EmployeeID: ''
         }
-        $scope.HistorySubscribe();
+        $scope.getHistory();
+        //$scope.HistorySubscribe();
     };
     $scope.HistorySubscribe = function () {
         $http.get(urlSubscribe, configSubscribe)
@@ -80,12 +81,12 @@ app.controller('HistoryController', ['$scope', '$http', '$timeout', '$interval',
 
     var url = './site/api/HistoryApi/GetHistory.php';
 
-    // $scope.getHistory = function() {
-    //   $http.get(url, config)
-    //   .then(function(data){
-    //       $scope.historys = data.data;
-    //   });
-    // };
+    $scope.getHistory = function() {
+      $http.get(url, config)
+      .then(function(data){
+          $scope.historys = data.data;
+      });
+    };
 
     $scope.Search = function () {
         var res = $http.post(
