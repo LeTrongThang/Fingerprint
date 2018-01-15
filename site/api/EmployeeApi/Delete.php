@@ -8,7 +8,7 @@ $input = json_decode(file_get_contents("php://input"));
 $EmployeeID = mysqli_real_escape_string($conn, $input->EmployeeID);
 
 $query = "DELETE FROM employee WHERE EmployeeID = '$EmployeeID'";
-$queryHistory = "DELETE FROM histoty WHERE EmployeeID = '$EmployeeID'";
+$queryHistory = "DELETE FROM history WHERE EmployeeID = '$EmployeeID'";
 $querySalary = "DELETE FROM salary WHERE EmployeeID = '$EmployeeID'";
 //$queryCalendar = "DELETE FROM employee WHERE EmployeeID = '$EmployeeID'";
 

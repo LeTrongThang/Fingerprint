@@ -1,6 +1,6 @@
-app.controller('HistoryController', ['$scope', '$http', '$timeout', '$interval', function ($scope, $http, $timeout, $interval) {
+app.controller('HistoryController', ['$scope', '$uibModal', '$http', '$timeout', '$interval',
+ function ($scope, $uibModal ,$http, $timeout, $interval) {
     console.log("Started history controller");
-
     $scope.init = function () {
         $scope.historys = [];
         $scope.SearchModel = {
@@ -87,7 +87,19 @@ app.controller('HistoryController', ['$scope', '$http', '$timeout', '$interval',
           $scope.historys = data.data;
       });
     };
-
+    
+    $scope.DeleteHistory = function () {
+        $scope.modalInstance = $uibModal.open({
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'site/view/DetailEmployee.html',
+            controller:'DeleteHistoryController',
+            size: 'lg',
+            resolve: {
+                
+            }
+        });
+    }
     $scope.Search = function () {
         var res = $http.post(
             './site/api/HistoryApi/Search.php', {
@@ -106,4 +118,22 @@ app.controller('HistoryController', ['$scope', '$http', '$timeout', '$interval',
     };
     //$scope.Get();
     $scope.init();
+}]);
+
+app.controller('DeleteHistoryController', ['$scope', '$uibModalInstance', '$http',
+function ($scope, $uibModalInstance, $http) {
+  $scope.DeleteHistoryModal = function() {
+    var res = $http.post(
+        './site/api/HistoryApi/Delete.php', {
+            'Month': $scope.DeleteModel.Month,
+            'Year': $scope.DeleteModel.Year,
+        }
+    ).then(function (data) {
+        if (parseInt(data.data) == 1) {
+
+        } else {
+            swal();
+        }
+    });
+  }
 }]);
