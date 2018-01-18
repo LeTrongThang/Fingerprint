@@ -1,0 +1,59 @@
+<div>
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">System Infomation</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="button" style="float:left" class="btn btn-primary" ng-click="GetSystem()">Get System Infomation</button>
+                    </div>
+                    <div ng-if="System == true" class="col-sm-12">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5">Wifi Status</label>
+                                <div class="col-sm-7">
+                                    <a type="text" ng-bind="SystemModel.Wifi"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5">Battery Status</label>
+                                <div class="col-sm-7">
+                                    <a type="text" ng-bind="SystemModel.Battery"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="System == true" class="col-sm-12">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5">ESP8266 Status</label>
+                                <div class="col-sm-7">
+                                    <a type="text" ng-bind="SystemModel.Esp8266"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5">Micro SD Status</label>
+                                <div class="col-sm-7">
+                                    <a type="text" ng-bind="SystemModel.Microsd"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div  ng-if="System == true" class="col-sm-12">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-5">R307 Status</label>
+                                <div class="col-sm-7">
+                                    <a type="text" ng-bind="SystemModel.R307"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

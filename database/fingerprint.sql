@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2018 at 12:22 PM
+-- Generation Time: Jan 18, 2018 at 09:39 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -52,23 +52,18 @@ CREATE TABLE `employee` (
   `InsuranceID` int(20) NOT NULL,
   `Dayoff` int(10) NOT NULL,
   `Salary` int(20) NOT NULL,
-  `Bonus` int(20) NOT NULL,
-  `Authen` varchar(6) COLLATE utf8_unicode_ci NOT NULL
+  `Bonus` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Managing employee';
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`EmployeeID`, `Name`, `Position`, `Email`, `Address`, `PhoneNumber`, `StartingDate`, `InsuranceID`, `Dayoff`, `Salary`, `Bonus`, `Authen`) VALUES
-('NV01', 'Le Ngoc Huy', 'Staff', 'lehuy.paul@gmail.com', '7 street, Hiep Binh Chanh Wards, Thu Duc District', 985752395, '2018-01-01', 11111111, 0, 8000000, 0, ''),
-('NV05', 'NGUYEN VAN E', 'Leader', 'nguyee@gmail.com', '7 street, Hiep Binh Chanh Wards, Thu Duc District', 985752395, '2018-01-02', 2147483647, 0, 12000000, 0, ''),
-('NV09', 'NGUYEN VAN H', 'Staff', 'nguyenh@gmail.com', '7 street, Hiep Binh Chanh Wards, Thu Duc District', 985752395, '2018-01-02', 2147483647, 0, 9000000, 0, ''),
-('NV11', 'NGUYEN VAN K', 'Leader', 'NGUYENK@GMAIL.COM', '55 QUAN 10', 98432334, '2018-01-02', 234234234, 0, 120000000, 0, ''),
-('NV44', '34345', 'Staff', '345345', '345345', 34534, '2018-01-02', 345345, 0, 345345, 0, ''),
-('NV90', 'HUY NGUYEN', 'Leader', 'nguyen@gmail.com', '234234', 3534534, '2018-01-03', 4234234, 0, 23423423, 0, ''),
-('NV90234', '234234', 'Staff', '23423', '4234', 423423, '2018-01-02', 234234234, 0, 23423423, 0, ''),
-('NV903', 'LE HUY', 'Staff', '324234', '24234', 94234, '2018-01-03', 234234, 0, 234234, 0, '');
+INSERT INTO `employee` (`EmployeeID`, `Name`, `Position`, `Email`, `Address`, `PhoneNumber`, `StartingDate`, `InsuranceID`, `Dayoff`, `Salary`, `Bonus`) VALUES
+('NV01', 'Le Ngoc Huy', 'Staff', 'lehuy.paul@gmail.com', '7 street, Hiep Binh Chanh Wards, Thu Duc District', 985752395, '2018-01-01', 11111111, 0, 8000000, 0),
+('NV05', 'NGUYEN VAN E', 'Leader', 'nguyee@gmail.com', '7 street, Hiep Binh Chanh Wards, Thu Duc District', 985752395, '2018-01-02', 2147483647, 0, 12000000, 0),
+('NV09', 'NGUYEN VAN H', 'Staff', 'nguyenh@gmail.com', '7 street, Hiep Binh Chanh Wards, Thu Duc District', 985752395, '2018-01-02', 2147483647, 0, 9000000, 0),
+('NV78', 'le phuong linh doan', 'Staff', 'lehuy.paul@gmail.com', '7 street, Hiep Binh Chanh Wards, Thu Duc District', 985752395, '2018-01-07', 2147483647, 0, 900000000, 0);
 
 -- --------------------------------------------------------
 
@@ -81,99 +76,17 @@ CREATE TABLE `history` (
   `EmployeeID` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `Name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `Status` int(1) NOT NULL,
-  `Date` date NOT NULL
+  `Date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='history is where save history of going in and out the office';
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `message`
+-- Dumping data for table `history`
 --
 
-CREATE TABLE `message` (
-  `message` varchar(100) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `message`
---
-
-INSERT INTO `message` (`message`) VALUES
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(''),
-(' '),
-(' '),
-('\0NV02,24012013 '),
-(' '),
-('\0NV05,24012013 '),
-('	\0NV15,24012013\n\n '),
-(' '),
-('	\0NV45,24012013\n\n '),
-(' '),
-(' '),
-(' '),
-(' '),
-(' '),
-(' '),
-('\0NV745,24012013 '),
-(' '),
-('History.\0NV795,24012013 '),
-(' '),
-(' '),
-(' '),
-(' '),
-(' '),
-('History.\0NV795,24012013 '),
-('History.\0NV795,24012018 '),
-('History.\0NV795,24012016 '),
-('History.\0NV795,24012016 '),
-('History.\0NV795,24012016 '),
-(' '),
-('History.\0NV795,24012016 '),
-('<br />\n<b>Warning</b>:  stream_socket_client(): php_network_getaddresses: getaddrinfo failed: No suc');
+INSERT INTO `history` (`HistoryId`, `EmployeeID`, `Name`, `Status`, `Date`) VALUES
+(1, 'NV09', 'NGUYEN VAN H', 0, '2018-01-01 00:00:00'),
+(3, 'NV05', 'NGUYEN VAN E', 0, '2018-01-01 00:00:00'),
+(4, 'NV78', 'le phuong linh doan', 0, '2018-01-01 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -188,8 +101,8 @@ CREATE TABLE `salary` (
   `Salary` int(20) NOT NULL,
   `Bonus` int(20) NOT NULL,
   `Position` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `Month` int(2) NOT NULL,
-  `Year` int(4) NOT NULL
+  `Month` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
+  `Year` varchar(4) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -197,7 +110,10 @@ CREATE TABLE `salary` (
 --
 
 INSERT INTO `salary` (`ID`, `Name`, `EmployeeID`, `Salary`, `Bonus`, `Position`, `Month`, `Year`) VALUES
-(1, 'LE NGOC HUY', 'NV01', 10000000, 100000, 'Leader', 0, 0);
+(82, 'Le Ngoc Huy', 'NV01', 8000000, 0, 'Staff', '1', '2018'),
+(83, 'NGUYEN VAN E', 'NV05', 12000000, 0, 'Leader', '1', '2018'),
+(84, 'NGUYEN VAN H', 'NV09', 9000000, 0, 'Staff', '1', '2018'),
+(85, 'le phuong linh doan', 'NV78', 900000000, 0, 'Staff', '1', '2018');
 
 -- --------------------------------------------------------
 
@@ -265,10 +181,15 @@ ALTER TABLE `user`
 ALTER TABLE `calendar`
   MODIFY `CalendarID` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `history`
+--
+ALTER TABLE `history`
+  MODIFY `HistoryId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT for table `salary`
 --
 ALTER TABLE `salary`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 --
 -- Constraints for dumped tables
 --

@@ -63,10 +63,10 @@ include('./site/api/CheckSessionRedirectServer.php');
                                         </a>
                                 </li>
                                 <li>
-                                    <a href="#!calendar">
+                                    <a href="#!system">
                                             <span class="scope">
                                                 <i class="glyphicon glyphicon-calendar"></i>
-                                                <span class="title-function hidden-xs">CALENDAR</span>
+                                                <span class="title-function hidden-xs">SYSTEM INFOMATION</span>
                                             </span>
                                         </a>
                                 </li>
@@ -133,6 +133,6 @@ include('./site/api/CheckSessionRedirectServer.php');
     <script type="text/javascript" src = "site/controller/SalaryController.js"></script>
     <script type="text/javascript" src = "site/controller/EmployeeController.js"></script>
     <script type="text/javascript" src = "site/controller/HistoryController.js"></script>
-    <script type="text/javascript" src = "site/controller/CalendarController.js"></script>
+    <script type="text/javascript" src = "site/controller/SystemController.js"></script>
 </body>
 </html>
