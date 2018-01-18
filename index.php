@@ -13,7 +13,7 @@ include('./site/api/CheckSessionRedirectServer.php');
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
-    <meta name="viewport" content="initial-scale=1" />
+    <meta name="viewport" content="initial-scale    =1" />
 
     <!-- bootstraps library -->
     <link rel="stylesheet" href="Libs/bootstrap/css/bootstrap.min.css">

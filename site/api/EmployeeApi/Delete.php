@@ -1,6 +1,6 @@
 <?php
 require "../../../admin/database/database.php";
-include('./../CheckSessionRedirectClient.php');
+//include('./../CheckSessionRedirectClient.php');
 
 $input = json_decode(file_get_contents("php://input"));
 
@@ -22,7 +22,7 @@ if(mysqli_query($conn, $query)){
     $json = json_encode($data);
     echo $json;
 }
-    else {
+else {
     $data = 0;
     $json = json_encode($data);
     echo $json;

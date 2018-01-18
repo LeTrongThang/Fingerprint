@@ -121,7 +121,7 @@ app.controller('EmployeeController', ['$scope', '$uibModal', '$http',
 	                                $scope.getAllEmployee();
 	                            }
 	                            else {
-	                                swal("Delete Employee Info fail. Please do again or contacting maanger!");
+	                                swal("Delete Employee Info fail. Please do again or contacting manager!");
 	                            }
                         	}
                         });
@@ -129,7 +129,6 @@ app.controller('EmployeeController', ['$scope', '$uibModal', '$http',
                         $scope.getAllEmployee();
                     }
                 });
-
         }
 
         $scope.init();

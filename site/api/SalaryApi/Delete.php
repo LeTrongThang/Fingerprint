@@ -1,5 +1,5 @@
 <?php
-// History
+// Salary
 require "../../../admin/database/database.php";
 //include('./../CheckSessionRedirectClient.php');
 
@@ -11,12 +11,12 @@ function IsNullOrEmptyString($question){
     return (!isset($question) || trim($question)==='');
 }
 
-$query = "DELETE * FROM salary WHERE 1=1";
+$query = "DELETE  FROM salary WHERE 1=1 ";
 if (!IsNullOrEmptyString($Month)){
-        $query = $query . "AND Month = '$Month'";
+        $query = $query . " AND Month = '$Month'";
 }
 if (!IsNullOrEmptyString($Year)){
-    $query = $query . "AND Year = '$Year'";
+    $query = $query . " AND Year = '$Year'";
 }
 if(mysqli_query($conn, $query)){
     $data = 1;  

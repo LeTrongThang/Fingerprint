@@ -92,7 +92,7 @@ app.controller('HistoryController', ['$scope', '$uibModal', '$http', '$timeout',
         $scope.modalInstance = $uibModal.open({
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
-            templateUrl: 'site/view/DetailEmployee.html',
+            templateUrl: 'site/view/DeleteHistory.html',
             controller:'DeleteHistoryController',
             size: 'lg',
             resolve: {
@@ -116,24 +116,42 @@ app.controller('HistoryController', ['$scope', '$uibModal', '$http', '$timeout',
             }
         });
     };
-    //$scope.Get();
+
     $scope.init();
 }]);
 
 app.controller('DeleteHistoryController', ['$scope', '$uibModalInstance', '$http',
 function ($scope, $uibModalInstance, $http) {
+    $scope.init = function() {
+        $scope.DeleteModel = {
+            EmployeeID: '',
+            FromDate : new Date(),
+            ToDate : new Date(),
+        };
+    };
+
   $scope.DeleteHistoryModal = function() {
     var res = $http.post(
         './site/api/HistoryApi/Delete.php', {
-            'Month': $scope.DeleteModel.Month,
-            'Year': $scope.DeleteModel.Year,
+            'FromDate': $scope.DeleteModel.FromDate,
+            'ToDate': $scope.DeleteModel.ToDate,
         }
     ).then(function (data) {
         if (parseInt(data.data) == 1) {
-
+            swal("Deleted Successful");
         } else {
-            swal();
+            swal("Deleted fail");
         }
     });
   }
+
+  $scope.Close = function () {
+    $uibModalInstance.close('save');
+}
+$scope.Disable = function() {
+    if($scope.DeleteModel.EmployeeID == ''|| $scope.DeleteModel.EmployeeID == null) 
+    return true;
+}
+
+$scope.init();
 }]);
