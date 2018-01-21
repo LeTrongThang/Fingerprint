@@ -1,6 +1,6 @@
 <?php
 require "../../../admin/database/database.php";
-include('./../CheckSessionRedirectClient.php');
+//include('./../CheckSessionRedirectClient.php');
 
 $input = json_decode(file_get_contents("php://input"));
 
@@ -13,6 +13,9 @@ $ToDate = mysqli_real_escape_string($conn, $input->ToDate);
 function IsNullOrEmptyString($question){
         return (!isset($question) || trim($question)==='');
 }
+
+var_dump($FromDate);
+var_dump($ToDate);
 $query = "SELECT * FROM history WHERE Date BETWEEN '$FromDate' AND '$ToDate'";
 
 if (!IsNullOrEmptyString($EmployeeID)){
@@ -23,6 +26,7 @@ if (!IsNullOrEmptyString($Name)) {
         $query = $query . " AND Name = '$Name'";
 }
  
+var_dump($query);
 $data = array();
 
 // retrieve data responses
