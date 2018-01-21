@@ -96,17 +96,21 @@ app.controller('HistoryController', ['$scope', '$uibModal', '$http', '$timeout',
             controller:'DeleteHistoryController',
             size: 'lg',
             resolve: {
-                
+                parent : function(){
+                     return $scope;
+                }
             }
         });
     }
     $scope.Search = function () {
+        var FromDate = moment($scope.SearchModel.FromDate).format("YYYY-MM-DD HH:mm");
+        var ToDate = moment($scope.SearchModel.ToDate).format("YYYY-MM-DD HH:mm");
         var res = $http.post(
             './site/api/HistoryApi/Search.php', {
                 'Name': $scope.SearchModel.Name,
                 'EmployeeID': $scope.SearchModel.EmployeeID,
-                'FromDate': $scope.SearchModel.FromDate,
-                'ToDate': $scope.SearchModel.ToDate
+                'FromDate': FromDate,
+                'ToDate': ToDate
             }
         ).then(function (data) {
             if (data.data.isLogin == 'false') {
@@ -120,8 +124,8 @@ app.controller('HistoryController', ['$scope', '$uibModal', '$http', '$timeout',
     $scope.init();
 }]);
 
-app.controller('DeleteHistoryController', ['$scope', '$uibModalInstance', '$http',
-function ($scope, $uibModalInstance, $http) {
+app.controller('DeleteHistoryController', ['$scope', '$uibModalInstance', '$http', 'parent',
+function ($scope, $uibModalInstance, $http, parent) {
     $scope.init = function() {
         $scope.DeleteModel = {
             EmployeeID: '',
@@ -130,15 +134,19 @@ function ($scope, $uibModalInstance, $http) {
         };
     };
 
-  $scope.DeleteHistoryModal = function() {
+  $scope.Delete = function() {
+    var FromDate = moment($scope.DeleteModel.FromDate).format("YYYY-MM-DD HH:mm");
+    var ToDate = moment($scope.DeleteModel.ToDate).format("YYYY-MM-DD HH:mm");
     var res = $http.post(
         './site/api/HistoryApi/Delete.php', {
-            'FromDate': $scope.DeleteModel.FromDate,
-            'ToDate': $scope.DeleteModel.ToDate,
+            'EmployeeID': $scope.DeleteModel.EmployeeID,
+            'FromDate': FromDate,
+            'ToDate':   ToDate,
         }
     ).then(function (data) {
         if (parseInt(data.data) == 1) {
             swal("Deleted Successful");
+            parent.getHistory();
         } else {
             swal("Deleted fail");
         }
@@ -148,10 +156,10 @@ function ($scope, $uibModalInstance, $http) {
   $scope.Close = function () {
     $uibModalInstance.close('save');
 }
-$scope.Disable = function() {
-    if($scope.DeleteModel.EmployeeID == ''|| $scope.DeleteModel.EmployeeID == null) 
-    return true;
-}
+// $scope.Disable = function() {
+//     if($scope.DeleteModel.EmployeeID == ''|| $scope.DeleteModel.EmployeeID == null) 
+//     return true;
+// }
 
 $scope.init();
 }]);

@@ -14,8 +14,6 @@ function IsNullOrEmptyString($question){
         return (!isset($question) || trim($question)==='');
 }
 
-var_dump($FromDate);
-var_dump($ToDate);
 $query = "SELECT * FROM history WHERE Date BETWEEN '$FromDate' AND '$ToDate'";
 
 if (!IsNullOrEmptyString($EmployeeID)){
@@ -25,8 +23,6 @@ if (!IsNullOrEmptyString($EmployeeID)){
 if (!IsNullOrEmptyString($Name)) {
         $query = $query . " AND Name = '$Name'";
 }
- 
-var_dump($query);
 $data = array();
 
 // retrieve data responses
