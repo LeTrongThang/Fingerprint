@@ -1,4 +1,4 @@
-app.controller("SystemController", ['$scope', function($scope){
+app.controller("SystemController", ['$scope', '$http', function($scope, $http){
     $scope.init = function(){
         $scope.System = false;
         $scope.SystemModel = {
@@ -11,6 +11,10 @@ app.controller("SystemController", ['$scope', function($scope){
     };
     $scope.GetSystem = function(){
         $scope.System = true;
+        var res = $http.post(
+            './site/api/mqtt/PublishGetSystem.php', {
+            }
+        ).then(function (data) { });
     }
     $scope.init();
 }]);
