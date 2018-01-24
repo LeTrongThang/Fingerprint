@@ -30,7 +30,7 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-5">ESP8266 Status</label>
                                 <div class="col-sm-7">
-                                    <a type="text" ng-bind="SystemModel.Esp8266"></a>
+                                    <a type="text" ng-bind="SystemModel.Esp8266 == 1? 'Available':'Error'"></a>
                                 </div>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-5">Micro SD Status</label>
                                 <div class="col-sm-7">
-                                    <a type="text" ng-bind="SystemModel.Microsd"></a>
+                                    <a type="text" ng-bind="SystemModel.Microsd == 1? 'Available':'Error'"></a>
                                 </div>
                             </div>
                         </div>
@@ -48,12 +48,40 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-5">R307 Status</label>
                                 <div class="col-sm-7">
-                                    <a type="text" ng-bind="SystemModel.R307"></a>
+                                    <a type="text" ng-bind="SystemModel.R307 == 1? 'Available':'Error'"></a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row"></div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th> Wif Status </th>
+                                    <th> R307 </th>
+                                    <th> Battery </th>
+                                    <th> Esp8266 </th>
+                                    <th> MicroSd </th>
+                                    <th> Date</th>
+                                </tr>
+                            </thead>
+                            <tbody ng-if="systems.length > 0">
+                                <tr ng-repeat="system in systems">
+                                    <td ng-bind="$index + 1"></td>
+                                    <td ng-bind="system.Wifi"></td>
+                                    <td ng-bind="system.R307"></td>
+                                    <td ng-bind="system.Battery"></td>
+                                    <td ng-bind="system.Esp8266"></td>
+                                    <td ng-bind="employee.MicroSd"></td>
+                                    <td ng-bind="employee.Date | date:'yyyy-MM-dd'"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
             </div>
-        </div>
     </div>
+</div>
 </div>

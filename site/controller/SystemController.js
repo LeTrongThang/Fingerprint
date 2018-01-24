@@ -3,7 +3,7 @@ app.controller("SystemController", ['$scope', '$http', function($scope, $http){
         $scope.System = false;
         $scope.SystemModel = {
             Wifi : 'UIT-Public',
-            Esp8266: 'Available',
+            Esp8266: 1,
             R307: 'Available',
             Microsd:'Available',
             Battery: '92%'
