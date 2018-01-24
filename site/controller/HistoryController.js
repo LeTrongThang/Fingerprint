@@ -15,49 +15,41 @@ app.controller('HistoryController', ['$scope', '$uibModal', '$http', '$timeout',
     $scope.HistorySubscribe = function () {
         $http.get(urlSubscribe, configSubscribe)
             .then(function (data) {
-                if (data.data.isLogin == 'false') {
-                    window.location = './login.php';
+                console.log("Subscribing...");
+                $scope.HistoryInfo = data.data;
+                console.log(data.data);
+                if (data.data == null || data.data == " ") { // check if data empty
+                    return '';
                 } else {
-                    console.log("Subscribing...");
-                    $scope.HistoryInfo = data.data;
-                    console.log(data.data);
-                    if (data.data == null || data.data == " ") { // check if data empty
-                        return '';
-                    } else {
+                    // PUBLISH SCAN
+                    $http.get($scope.PublishScan,configSubscribe )
+                        .then (function(datapublish){});
+                    // DELAY 1s
+                    var delayInMilliseconds = 2000; //1 second
+                    setTimeout(function() {
+                        //your code to be executed after 1 second
                         // Processing string to save to  DB
-                        var stringhistory = data.data.trim();
-                    	var EmployeeID = stringhistory.substring(0,4);
-                        var DateHistory = stringhistory.substring(5,stringhistory.length - 2);
-                        var Status = stringhistory.substring(stringhistory.length -1 ,stringhistory.length);
-                        var res = $http.post('./site/api/HistoryApi/SaveHistory.php',
-                            {
-                                'EmployeeID': EmployeeID,
-                                'Status': Status,
-                                'Date': DateHistory
-                            }).then(function (dataDB) {
-                                  if ( dataDB.data != null) {
-                                      $scope.a = true;
-                                  }
-                                });
-                            // PUBLISH SCAN
-                            if ($scope.a) {
-                                $http.get($scope.PublishScan,configSubscribe )
-                                    .then (function(data){});
-                            }
-                            // DELAY 1s
-                            var delayInMilliseconds = 1000; //1 second
-                            setTimeout(function() {
-                            //your code to be executed after 1 second
-                            }, delayInMilliseconds);
-                        $scope.getHistory();
-                    }
+                    var stringhistory = data.data.trim();
+                    var EmployeeID = stringhistory.substring(0,4);
+                    var DateHistory = stringhistory.substring(5,stringhistory.length - 2);
+                    var Status = stringhistory.substring(stringhistory.length -1 ,stringhistory.length);
+                    var res = $http.post('./site/api/HistoryApi/SaveHistory.php',
+                        {
+                            'EmployeeID': EmployeeID,
+                            'Status': Status,
+                            'Date': DateHistory
+                        }).then(function (dataDB) {
+                            });
+                    }, delayInMilliseconds);
+                        
+                    $scope.getHistory();
                 }
             });
     };
 
     $interval(function () {
-        $scope.HistorySubscribe();
-    }, 5 * 1000);
+          $scope.HistorySubscribe();
+    }, 20 * 1000);
 
     var config = {
         headers: {

@@ -8,7 +8,7 @@
                         <button type="button" style="float:left" class="btn btn-primary" ng-click="GetSystem()">Get System Infomation</button>
                     </div>
                     <div ng-if="System == true" class="col-sm-12">
-                        <div class="col-sm-6">
+                        <div class="col-sm-6" ng-if="SystemModel.Wifi">
                             <div class="form-group">
                                 <label class="control-label col-sm-5">Wifi Status</label>
                                 <div class="col-sm-7">
@@ -16,7 +16,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-6" ng-if="SystemModel.Battery">
                             <div class="form-group">
                                 <label class="control-label col-sm-5">Battery Status</label>
                                 <div class="col-sm-7">
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div ng-if="System == true" class="col-sm-12">
-                        <div class="col-sm-6">
+                        <div class="col-sm-6" ng-if="SystemModel.Esp8266">
                             <div class="form-group">
                                 <label class="control-label col-sm-5">ESP8266 Status</label>
                                 <div class="col-sm-7">
@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-6" ng-if="SystemModel.Microsd">
                             <div class="form-group">
                                 <label class="control-label col-sm-5">Micro SD Status</label>
                                 <div class="col-sm-7">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <div  ng-if="System == true" class="col-sm-12">
-                        <div class="col-sm-6">
+                        <div class="col-sm-6" ng-if="SystemModel.R307">
                             <div class="form-group">
                                 <label class="control-label col-sm-5">R307 Status</label>
                                 <div class="col-sm-7">
