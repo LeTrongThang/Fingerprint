@@ -11,7 +11,7 @@ $client_id = "fingerprint"; // make sure this is unique for connecting to sever 
 
 $mqtt = new phpMQTT($server, $port, $client_id);
 if ($mqtt->connect(true, NULL, $username, $password)) {
-	$mqtt->publish("fingerprint/checkscan", 1, 0);
+	$mqtt->publish("fingerprint/scan", "", 0,1);
 	$mqtt->close();
 } else {
     echo "Time out!\n";

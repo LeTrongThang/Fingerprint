@@ -9,8 +9,8 @@ app.controller('HistoryController', ['$scope', '$uibModal', '$http', '$timeout',
             Name: '',
             EmployeeID: ''
         }
+        $scope.PublishScan = './site/api/mqtt/PublishCheckScan.php';
         $scope.getHistory();
-        //$scope.HistorySubscribe();
     };
     $scope.HistorySubscribe = function () {
         $http.get(urlSubscribe, configSubscribe)
@@ -24,13 +24,8 @@ app.controller('HistoryController', ['$scope', '$uibModal', '$http', '$timeout',
                     if (data.data == null || data.data == " ") { // check if data empty
                         return '';
                     } else {
-                        // response to hardware to check scan
-
-                        var urlCheckScan = './site/api/mqtt/PublishCheckScan.php';
-                        $http.get(urlCheckScan, configSubscribe).then(function (data) { });
-                        console.log("Saving into History...");
                         // Processing string to save to  DB
-                        var stringhistory = data.data;
+                        var stringhistory = data.data.trim();
                     	var EmployeeID = stringhistory.substring(0,4);
                         var DateHistory = stringhistory.substring(5,stringhistory.length - 2);
                         var Status = stringhistory.substring(stringhistory.length -1 ,stringhistory.length);
@@ -39,23 +34,30 @@ app.controller('HistoryController', ['$scope', '$uibModal', '$http', '$timeout',
                                 'EmployeeID': EmployeeID,
                                 'Status': Status,
                                 'Date': DateHistory
-                            }).then(function (data) {
-                                if (data.data.isLogin == 'false') {
-                                    window.location = './login.php';
-                                } else {
-
-                                }
-                            });
+                            }).then(function (dataDB) {
+                                  if ( dataDB.data != null) {
+                                      $scope.a = true;
+                                  }
+                                });
+                            // PUBLISH SCAN
+                            if ($scope.a) {
+                                $http.get($scope.PublishScan,configSubscribe )
+                                    .then (function(data){});
+                            }
+                            // DELAY 1s
+                            var delayInMilliseconds = 1000; //1 second
+                            setTimeout(function() {
+                            //your code to be executed after 1 second
+                            }, delayInMilliseconds);
+                        $scope.getHistory();
                     }
                 }
             });
     };
 
     $interval(function () {
-        //$scope.theTime = new Date().toLocaleTimeString();
         $scope.HistorySubscribe();
-        //alert("aa");
-    }, 30 * 1000);
+    }, 5 * 1000);
 
     var config = {
         headers: {

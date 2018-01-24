@@ -2,11 +2,11 @@ app.controller("SystemController", ['$scope', '$http', function($scope, $http){
     $scope.init = function(){
         $scope.System = false;
         $scope.SystemModel = {
-            Wifi : 'UIT-Public',
-            Esp8266: 1,
-            R307: 'Available',
-            Microsd:'Available',
-            Battery: '92%'
+            Wifi : '',
+            Esp8266: '',
+            R307: '',
+            Microsd:'',
+            Battery: ''
         };
     };
     $scope.GetSystem = function(){
@@ -20,12 +20,12 @@ app.controller("SystemController", ['$scope', '$http', function($scope, $http){
             './site/api/mqtt/SubscribeGetSystem.php', {
             }
         ).then(function (data) { 
-            var string = data.$msg;
-            var r307 = string.substring(string.length -1, string.length);
-            var sdcard = string.substring(string.length -3, string.length - 2) 
-            var esp = string.substring(string.length -5, string.length - 4);
-            var battery = string.substring(string.length -8, string.length - 6);
-            var wifiname = string.substring(0, string.length - 9);
+            var string = data.data.trim();
+            $scope.SystemModel.R307 = string.substring(string.length -1, string.length);
+            $scope.SystemModel.Microsd = string.substring(string.length -3, string.length - 2) 
+            $scope.SystemModel.Esp8266 = string.substring(string.length -5, string.length - 4);
+            $scope.SystemModel.Battery = string.substring(string.length -8, string.length - 6);
+            $scope.SystemModel.Wifi = string.substring(0, string.length - 9);
         });
     }
 

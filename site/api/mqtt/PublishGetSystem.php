@@ -10,7 +10,7 @@ $password = "IFM6FooHb29I";
 $client_id = "fingerprint"; 
 $mqtt = new phpMQTT($server, $port, $client_id);
 if ($mqtt->connect(true, NULL, $username, $password)) {
-	$mqtt->publish("fingerprint/create", "1", 0);
+	$mqtt->publish("fingerprint/checksystem", "1", 0);
 	$mqtt->close();
 } else {
     echo "Time out!\n";

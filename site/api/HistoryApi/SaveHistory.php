@@ -23,8 +23,11 @@ if(mysqli_num_rows($result) > 0) {
         // Save into history
          $querySave = "INSERT INTO history(Name, EmployeeID, Status, Date)
                        VALUES ('$Name','$EmployeeID','$Status' ,'$Date')";
-        var_dump($querySave);
-        $conn->query($querySave);
+        if (mysqli_query($conn, $querySave)) {
+            $data = 1;
+            $json = json_encode($data);
+            echo $json;
+        }
      }
 }
 ?>
