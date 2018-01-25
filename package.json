@@ -2,7 +2,7 @@
   "name": "fingerprint",
   "version": "1.0.0",
   "description": "manage employee via module fingerprint",
-  "main": "MainController.js",
+  "main": "Server.js",
   "dependencies": {
     "angular": "^1.6.8",
     "angular-animate": "^1.6.8",
@@ -21,7 +21,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "null"
+    "test": "null",
+    "start": "node Server.js"
   },
   "repository": {
     "type": "git",

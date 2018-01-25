@@ -27,6 +27,17 @@ app.controller("SystemController", ['$scope', '$http', function($scope, $http){
             $scope.SystemModel.Battery = string.substring(string.length -8, string.length - 6);
             $scope.SystemModel.Wifi = string.substring(0, string.length - 9);
         });
+
+        // Save info system to Database
+        var resDB = $http.post('./site/api/SystemApi/CreateSystemInfo.php',{
+                 'R307':  $scope.SystemModel.R307,
+                 'Microsd':  $scope.SystemModel.Microsd,
+                 'Esp8266':  $scope.SystemModel.Esp8266,
+                 'Battery':  $scope.SystemModel.R307,
+                 'Wifi':  $scope.SystemModel.Wifi,
+        }).then(function (data){
+            
+        });
     }
 
     $scope.init();
