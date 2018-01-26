@@ -18,12 +18,13 @@ app.controller('HistoryController', ['$scope', '$uibModal', '$http', '$timeout',
                 console.log("Subscribing...");
                 $scope.HistoryInfo = data.data;
                 console.log(data.data);
-                if (data.data == null || data.data == " ") { // check if data empty
+                if (data.data == null || data.data == " " || data.data == "") { // check if data empty
                     return '';
                 } else {
                     // PUBLISH SCAN
                     $http.get($scope.PublishScan,configSubscribe )
-                        .then (function(datapublish){});
+                        .then (function(datapublish){
+                        });
                     // DELAY 1s
                     var delayInMilliseconds = 2000; //1 second
                     setTimeout(function() {
@@ -40,9 +41,9 @@ app.controller('HistoryController', ['$scope', '$uibModal', '$http', '$timeout',
                             'Date': DateHistory
                         }).then(function (dataDB) {
                             });
+
+                        $scope.getHistory();
                     }, delayInMilliseconds);
-                        
-                    $scope.getHistory();
                 }
             });
     };

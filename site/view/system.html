@@ -54,18 +54,18 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row"></div>
+                <div class="row"></div>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th> Wif Status </th>
-                                    <th> R307 </th>
-                                    <th> Battery </th>
-                                    <th> Esp8266 </th>
-                                    <th> MicroSd </th>
-                                    <th> Date</th>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center"> Wif Status </th>
+                                    <th class="text-center"> R307 </th>
+                                    <th class="text-center"> Battery </th>
+                                    <th class="text-center"> Esp8266 </th>
+                                    <th class="text-center"> MicroSd </th>
+                                    <th class="text-center"> Date</th>
                                 </tr>
                             </thead>
                             <tbody ng-if="systems.length > 0">
@@ -75,13 +75,20 @@
                                     <td ng-bind="system.R307"></td>
                                     <td ng-bind="system.Battery"></td>
                                     <td ng-bind="system.Esp8266"></td>
-                                    <td ng-bind="employee.MicroSd"></td>
-                                    <td ng-bind="employee.Date | date:'yyyy-MM-dd'"></td>
+                                    <td ng-bind="employee.MicroSdCard"></td>
+                                    <td ng-bind="employee.Date | date:'yyyy-MM-dd hh:mm:ss'"></td>
+                                </tr>
+                            </tbody>
+                            <tbody ng-if="systems.length == 0">
+                                <tr>
+                                    <td colspan="7" class="text-center">
+                                        Không tìm thấy kết quả phù hợp
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-            </div> -->
+            </div>
     </div>
 </div>
 </div>
