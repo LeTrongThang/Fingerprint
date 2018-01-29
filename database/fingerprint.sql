@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 18, 2018 at 09:39 AM
+-- Generation Time: Jan 29, 2018 at 04:03 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -60,10 +60,9 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`EmployeeID`, `Name`, `Position`, `Email`, `Address`, `PhoneNumber`, `StartingDate`, `InsuranceID`, `Dayoff`, `Salary`, `Bonus`) VALUES
-('NV01', 'Le Ngoc Huy', 'Staff', 'lehuy.paul@gmail.com', '7 street, Hiep Binh Chanh Wards, Thu Duc District', 985752395, '2018-01-01', 11111111, 0, 8000000, 0),
-('NV05', 'NGUYEN VAN E', 'Leader', 'nguyee@gmail.com', '7 street, Hiep Binh Chanh Wards, Thu Duc District', 985752395, '2018-01-02', 2147483647, 0, 12000000, 0),
-('NV09', 'NGUYEN VAN H', 'Staff', 'nguyenh@gmail.com', '7 street, Hiep Binh Chanh Wards, Thu Duc District', 985752395, '2018-01-02', 2147483647, 0, 9000000, 0),
-('NV78', 'le phuong linh doan', 'Staff', 'lehuy.paul@gmail.com', '7 street, Hiep Binh Chanh Wards, Thu Duc District', 985752395, '2018-01-07', 2147483647, 0, 900000000, 0);
+('AL02', 'Lieu Hoang Anh', 'Staff', 'anhlieu@gmail.com', '', 0, '2018-01-26', 35345, 0, 10000000, 0),
+('DB03', 'Bui Tien Dung', 'Staff', 'dungbui@gmail.com', '', 0, '2018-01-26', 0, 0, 0, 0),
+('HL01', 'Le Ngoc Huy', 'Staff', 'lehuy.paul@gmail.com', '7 street, Hiep Binh Chanh Wards, Thu Duc District', 985752395, '2018-01-26', 32423423, 0, 10000000, 0);
 
 -- --------------------------------------------------------
 
@@ -84,9 +83,15 @@ CREATE TABLE `history` (
 --
 
 INSERT INTO `history` (`HistoryId`, `EmployeeID`, `Name`, `Status`, `Date`) VALUES
-(1, 'NV09', 'NGUYEN VAN H', 0, '2018-01-01 00:00:00'),
-(3, 'NV05', 'NGUYEN VAN E', 0, '2018-01-01 00:00:00'),
-(4, 'NV78', 'le phuong linh doan', 0, '2018-01-01 00:00:00');
+(3, 'AL02', 'Lieu Hoang Anh', 0, '2018-01-26 15:06:00'),
+(4, 'DB03', 'Bui Tien Dung', 0, '2018-01-26 15:06:00'),
+(5, 'AL02', 'Lieu Hoang Anh', 0, '2018-01-01 00:00:00'),
+(6, 'DB03', 'Bui Tien Dung', 0, '2018-01-01 00:00:00'),
+(7, 'AL02', 'Lieu Hoang Anh', 0, '2018-01-26 15:09:00'),
+(8, 'AL02', 'Lieu Hoang Anh', 0, '2018-01-26 15:10:00'),
+(9, 'AL02', 'Lieu Hoang Anh', 0, '2018-01-26 15:11:00'),
+(10, 'AL02', 'Lieu Hoang Anh', 0, '2018-01-26 15:11:00'),
+(11, 'AL02', 'Lieu Hoang Anh', 0, '2018-01-26 15:12:00');
 
 -- --------------------------------------------------------
 
@@ -105,15 +110,31 @@ CREATE TABLE `salary` (
   `Year` varchar(4) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `salary`
+-- Table structure for table `system`
 --
 
-INSERT INTO `salary` (`ID`, `Name`, `EmployeeID`, `Salary`, `Bonus`, `Position`, `Month`, `Year`) VALUES
-(82, 'Le Ngoc Huy', 'NV01', 8000000, 0, 'Staff', '1', '2018'),
-(83, 'NGUYEN VAN E', 'NV05', 12000000, 0, 'Leader', '1', '2018'),
-(84, 'NGUYEN VAN H', 'NV09', 9000000, 0, 'Staff', '1', '2018'),
-(85, 'le phuong linh doan', 'NV78', 900000000, 0, 'Staff', '1', '2018');
+CREATE TABLE `system` (
+  `SystemID` smallint(10) NOT NULL,
+  `Esp8266` int(2) NOT NULL,
+  `R307` int(2) NOT NULL,
+  `Battery` int(2) NOT NULL,
+  `MicroSDCard` int(2) NOT NULL,
+  `WifiStatus` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Date` datetime(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `system`
+--
+
+INSERT INTO `system` (`SystemID`, `Esp8266`, `R307`, `Battery`, `MicroSDCard`, `WifiStatus`, `Date`) VALUES
+(29, 1, 1, 82, 1, 'Lieu Anh', '2018-01-26 03:20:25.000000'),
+(30, 1, 1, 83, 1, 'Lieu Anh', '2018-01-26 03:21:37.000000'),
+(31, 1, 1, 83, 1, 'Lieu Anh', '2018-01-26 03:22:05.000000'),
+(32, 1, 1, 79, 1, 'Lieu Anh', '2018-01-26 03:31:01.000000');
 
 -- --------------------------------------------------------
 
@@ -166,6 +187,12 @@ ALTER TABLE `salary`
   ADD KEY `employeeID` (`EmployeeID`);
 
 --
+-- Indexes for table `system`
+--
+ALTER TABLE `system`
+  ADD PRIMARY KEY (`SystemID`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -184,12 +211,17 @@ ALTER TABLE `calendar`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `HistoryId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `HistoryId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `salary`
 --
 ALTER TABLE `salary`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `system`
+--
+ALTER TABLE `system`
+  MODIFY `SystemID` smallint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- Constraints for dumped tables
 --
