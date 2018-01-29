@@ -5,7 +5,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <button type="button" style="float:left" class="btn btn-primary" ng-click="GetSystem()">Get System Infomation</button>
+                        <button type="button" style="float:left" class="btn btn-primary" ng-click="GetSystem()">Get Current System Infomation</button>
                     </div>
                     <div ng-if="System == true" class="col-sm-12">
                         <div class="col-sm-6" ng-if="SystemModel.Wifi">
@@ -59,24 +59,24 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="text-center">#</th>
-                                    <th class="text-center"> Wif Status </th>
-                                    <th class="text-center"> R307 </th>
-                                    <th class="text-center"> Battery </th>
-                                    <th class="text-center"> Esp8266 </th>
-                                    <th class="text-center"> MicroSd </th>
-                                    <th class="text-center"> Date</th>
+                                    <th >#</th>
+                                    <th > Wif Status </th>
+                                    <th > R307 </th>
+                                    <th > Battery </th>
+                                    <th > Esp8266 </th>
+                                    <th > MicroSd </th>
+                                    <th > Date</th>
                                 </tr>
                             </thead>
                             <tbody ng-if="systems.length > 0">
                                 <tr ng-repeat="system in systems">
                                     <td ng-bind="$index + 1"></td>
-                                    <td ng-bind="system.Wifi"></td>
-                                    <td ng-bind="system.R307"></td>
+                                    <td ng-bind="system.WifiStatus"></td>
+                                    <td ng-bind="system.R307 == 1? 'Available' : 'Error'"></td>
                                     <td ng-bind="system.Battery"></td>
-                                    <td ng-bind="system.Esp8266"></td>
-                                    <td ng-bind="employee.MicroSdCard"></td>
-                                    <td ng-bind="employee.Date | date:'yyyy-MM-dd hh:mm:ss'"></td>
+                                    <td ng-bind="system.Esp8266 == 1? 'Available' : 'Error'"></td>
+                                    <td ng-bind="system.MicroSDCard == 1? 'Available' : 'Error'"></td>
+                                    <td ng-bind="system.Date | date:'yyyy-MM-dd hh:mm:ss'"></td>
                                 </tr>
                             </tbody>
                             <tbody ng-if="systems.length == 0">

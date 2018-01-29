@@ -9,8 +9,10 @@ $Esp8266 = mysqli_real_escape_string($conn, $input->Esp8266);
 $Wifi = mysqli_real_escape_string($conn, $input->Wifi);
 $Battery = mysqli_real_escape_string($conn, $input->Battery);
 $MicroSd = mysqli_real_escape_string($conn, $input->Microsd);
-$Date = mysqli_real_escape_string($conn, $input->DateSystem);
+$Date = mysqli_real_escape_string($conn, $input->Date);
 
+$timestamp = strtotime($Date);
+$Date = date("Y-m-d H:i:s", $timestamp);
 $query = "INSERT INTO system(Esp8266, R307, Battery, MicroSDCard, WifiStatus, Date)
           VALUES ('$Esp8266', '$R307','$Battery','$MicroSd','$Wifi','$Date')";
 
