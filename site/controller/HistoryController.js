@@ -9,7 +9,8 @@ app.controller('HistoryController', ['$scope', '$uibModal', '$http', '$timeout',
             Name: '',
             EmployeeID: ''
         }
-        $scope.PublishScan = './site/api/mqtt/PublishCheckScan.php';
+        $scope.PublishScan = './site/api/mqtt/PublishScan.php';
+        $scope.PublishCheckScan = './site/api/mqtt/PublishCheckScan.php';
         $scope.getHistory();
     };
     $scope.HistorySubscribe = function () {
@@ -20,18 +21,25 @@ app.controller('HistoryController', ['$scope', '$uibModal', '$http', '$timeout',
                 console.log(data.data);
                 if (data.data == null || data.data == " " || data.data == "") { // check if data empty
                     return '';
-                } else {
-                    // PUBLISH SCAN
-                    $http.get($scope.PublishScan,configSubscribe )
+                } else { // if it has data
+                    $http.post('./site/api/mqtt/PublishScan.php', {})
+                          .then(function(datascan){
+                    });
+
+                    var stringhistory = data.data.trim();
+                    var EmployeeID = stringhistory.substring(0,4);
+                    // publish scan to delete data in broker    
+                    $http.post('./site/api/mqtt/PublishCheckScan.php', {
+                        'EmployeeID': EmployeeID,
+                        })
                         .then (function(datapublish){
                         });
                     // DELAY 1s
-                    var delayInMilliseconds = 2000; //1 second
-                    setTimeout(function() {
+                    // var delayInMilliseconds = 1000; //1 second
+                    // setTimeout(function() {  
                         //your code to be executed after 1 second
                         // Processing string to save to  DB
-                    var stringhistory = data.data.trim();
-                    var EmployeeID = stringhistory.substring(0,4);
+                    
                     var DateHistory = stringhistory.substring(5,stringhistory.length - 2);
                     var Status = stringhistory.substring(stringhistory.length -1 ,stringhistory.length);
                     var res = $http.post('./site/api/HistoryApi/SaveHistory.php',
@@ -42,10 +50,10 @@ app.controller('HistoryController', ['$scope', '$uibModal', '$http', '$timeout',
                         }).then(function (dataDB) {
                             });
 
-                        $scope.getHistory();
-                    }, delayInMilliseconds);
+                    //}, delayInMilliseconds);
                 }
             });
+        $scope.getHistory();
     };
 
     $interval(function () {

@@ -9,9 +9,12 @@ $username = "zqlvxntw";                   // set your username
 $password = "IFM6FooHb29I";                   // set your password
 $client_id = "fingerprint"; // make sure this is unique for connecting to sever - you could use uniqid()
 
+$input = json_decode(file_get_contents("php://input"));
+$EmployeeID = mysqli_real_escape_string($conn, $input->EmployeeID);
+
 $mqtt = new phpMQTT($server, $port, $client_id);
 if ($mqtt->connect(true, NULL, $username, $password)) {
-	$mqtt->publish("fingerprint/scan", "", 0,1);
+	$mqtt->publish("fingerprint/checkscan", $EmployeeID, 0,1);
 	$mqtt->close();
 } else {
     echo "Time out!\n";

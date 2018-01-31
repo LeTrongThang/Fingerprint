@@ -29,8 +29,8 @@ app.controller("SystemController", ['$scope', '$http', function($scope, $http){
         ).then(function (data) { });
          
         // DELAY 1s
-        var delayInMilliseconds = 2000; //1 second
-        setTimeout(function() {
+        // var delayInMilliseconds = 2000; //1 second
+        // setTimeout(function() {
             //your code to be executed after 1 second
             // Processing string to save to  DB
             var resSystem = $http.post(
@@ -41,19 +41,21 @@ app.controller("SystemController", ['$scope', '$http', function($scope, $http){
                 if (data.data == null || data.data == " " || data.data == "") { // check if data empty
                     $scope.InvalidData = true;
                     return '';
-                } else {
+                } 
+                else {                                                          // if it has data
                 $scope.InvalidData = false;
-                $scope.SystemModel.R307 = string.substring(string.length -1, string.length);
-                $scope.SystemModel.Microsd = string.substring(string.length -3, string.length - 2) 
-                $scope.SystemModel.Esp8266 = string.substring(string.length -5, string.length - 4);
-                $scope.SystemModel.Battery = string.substring(string.length -8, string.length - 6);
-                $scope.SystemModel.Wifi = string.substring(0, string.length - 9); 
                 // Publish  to delete scan
                 var resSystem = $http.post(
                     './site/api/mqtt/PublishSystem.php', {
                     }
                 ).then(function (data) { });
-        
+
+                $scope.SystemModel.R307 = string.substring(string.length -1, string.length);
+                $scope.SystemModel.Microsd = string.substring(string.length -3, string.length - 2) 
+                $scope.SystemModel.Esp8266 = string.substring(string.length -5, string.length - 4);
+                $scope.SystemModel.Battery = string.substring(string.length -8, string.length - 6);
+                $scope.SystemModel.Wifi = string.substring(0, string.length - 9); 
+                
                 // Save info system to Database
                 if ($scope.System) {
                     var resDB = $http.post('./site/api/SystemApi/CreateSystemInfo.php',{
@@ -68,8 +70,7 @@ app.controller("SystemController", ['$scope', '$http', function($scope, $http){
                    } 
                  }
             });   
-        }, delayInMilliseconds);
-        
+        //}, delayInMilliseconds);
         $scope.SearchAllSystem();
         
        }
