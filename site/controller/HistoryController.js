@@ -22,24 +22,21 @@ app.controller('HistoryController', ['$scope', '$uibModal', '$http', '$timeout',
                 if (data.data == null || data.data == " " || data.data == "") { // check if data empty
                     return '';
                 } else { // if it has data
-                    $http.post('./site/api/mqtt/PublishScan.php', {})
-                          .then(function(datascan){
+                    
+                    // publish scan to delete data in broker    
+                    $http.get('./site/api/mqtt/PublishScan.php',configSubscribe)
+                    .then(function(datascan){
+                        $http.post('./site/api/mqtt/PublishCheckScan.php', {
+                            'EmployeeID': EmployeeID,
+                            })
+                            .then (function(datapublish){
+                            });
                     });
-
+                    // Delete in sd card
                     var stringhistory = data.data.trim();
                     var EmployeeID = stringhistory.substring(0,4);
-                    // publish scan to delete data in broker    
-                    $http.post('./site/api/mqtt/PublishCheckScan.php', {
-                        'EmployeeID': EmployeeID,
-                        })
-                        .then (function(datapublish){
-                        });
-                    // DELAY 1s
-                    // var delayInMilliseconds = 1000; //1 second
-                    // setTimeout(function() {  
-                        //your code to be executed after 1 second
-                        // Processing string to save to  DB
                     
+                        // Processing string to save to  DB
                     var DateHistory = stringhistory.substring(5,stringhistory.length - 2);
                     var Status = stringhistory.substring(stringhistory.length -1 ,stringhistory.length);
                     var res = $http.post('./site/api/HistoryApi/SaveHistory.php',
@@ -49,8 +46,6 @@ app.controller('HistoryController', ['$scope', '$uibModal', '$http', '$timeout',
                             'Date': DateHistory
                         }).then(function (dataDB) {
                             });
-
-                    //}, delayInMilliseconds);
                 }
             });
         $scope.getHistory();

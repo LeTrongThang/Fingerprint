@@ -2,11 +2,8 @@
 header('Content-Type: text/html; charset=utf-8');
 require "../../../admin/database/database.php";
 require("phpMQTT.php");
+require("mqttinit.php");
 
-$server = "m14.cloudmqtt.com";
-$port = 16326;              
-$username = "zqlvxntw";     
-$password = "IFM6FooHb29I"; 
 $client_id = "fingerprint"; 
 set_time_limit(0);
 $mqtt = new phpMQTT($server, $port, $client_id);

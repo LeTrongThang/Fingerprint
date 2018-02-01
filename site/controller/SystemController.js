@@ -53,7 +53,7 @@ app.controller("SystemController", ['$scope', '$http', function($scope, $http){
                 $scope.SystemModel.R307 = string.substring(string.length -1, string.length);
                 $scope.SystemModel.Microsd = string.substring(string.length -3, string.length - 2) 
                 $scope.SystemModel.Esp8266 = string.substring(string.length -5, string.length - 4);
-                $scope.SystemModel.Battery = string.substring(string.length -8, string.length - 6);
+                $scope.SystemModel.Battery = string.substring(string.length -8, string.length - 6) + '%';
                 $scope.SystemModel.Wifi = string.substring(0, string.length - 9); 
                 
                 // Save info system to Database

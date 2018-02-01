@@ -1,11 +1,7 @@
 <?php
 require "../../../admin/database/database.php";
 require("phpMQTT.php");
-
-$server = "m14.cloudmqtt.com";
-$port = 16559;                     // change if necessary
-$username = "aqdtlsiy";                   // set your username
-$password = "2NjLYbDRbQZi";                   // set your password
+require("mqttinit.php");
 $client_id = "fingerprint"; // make sure this is unique for connecting to sever - you could use uniqid()
 
 // Received data when calling publish
